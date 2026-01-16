@@ -4,7 +4,7 @@
 
 </div>
 
-# Rose-Garden
+# Rose Garden
 Rose Garden is a modern UI library, built to fit any use-case. Currenly Rose Garden is avaiable as a Figma file and is also ported to the Godot Engine in the form of a plugin
 
 ## Important! 
@@ -30,4 +30,13 @@ Here is the link to view Rose Garden in <a href="https://www.figma.com/design/hE
 | Tags | ✅ |  |
 | Tooltips |  |  |
 | Accordion Menu |  |  |
+
+<div align="center">
+  
+<img width="192" height="192" alt="No AI Stamp 192" src="https://github.com/user-attachments/assets/3013dfbf-55c2-4182-ae17-ca4ff046e412" />
+
+
+
+Developed by Rosepen Studios
+</div>
 
