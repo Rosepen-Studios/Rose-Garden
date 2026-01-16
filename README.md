@@ -1,3 +1,4 @@
+<img width="256" height="256" alt="Rose Garden Icon" src="https://github.com/user-attachments/assets/48dd7693-7431-40ab-9a44-cf310511fa9f" />
 # Rose-Garden
 Rose Garden is a modern UI library, built to fit any use-case. Currenly Rose Garden is avaiable as a Figma file and is also ported to the Godot Engine in the form of a plugin
 
