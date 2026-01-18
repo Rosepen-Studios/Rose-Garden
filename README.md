@@ -5,13 +5,14 @@
 </div>
 
 # Rose Garden
-Rose Garden is a modern UI library, built to fit any use-case. Currenly Rose Garden is avaiable as a Figma file and is also ported to the Godot Engine in the form of a plugin
+Rose Garden is a modern UI library, built to fit any use-case. It is currently avaiable as a Figma file and will also be ported to the Godot Engine in the form of a plugin
+
+## Figma 
+Here is the link to view Rose Garden in <a href="https://www.figma.com/design/hEDZEU4EImMaJ0nsQ8O01B/Rosepen-Design-Framework?m=auto&t=KOoT80cUDtAMmvU4-1">Figma</a>
 
 ## Important! 
 Rose Garden is under development, some components are not yet fully developed or not ported to code, please refer to the roadmap below.
 
-## Figma 
-Here is the link to view Rose Garden in <a href="https://www.figma.com/design/hEDZEU4EImMaJ0nsQ8O01B/Rosepen-Design-Framework?m=auto&t=KOoT80cUDtAMmvU4-1">Figma</a>
 
 ## Roadmap
 
@@ -30,6 +31,9 @@ Here is the link to view Rose Garden in <a href="https://www.figma.com/design/hE
 | Tags | ✅ |  |
 | Tooltips |  |  |
 | Accordion Menu |  |  |
+
+- **Figma Status**: Online, Not Complete
+- **Godot Status**: Not Ready
 
 <div align="center">
   
