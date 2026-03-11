@@ -22,7 +22,7 @@ Rose Garden is under development, some components are not yet fully developed or
 | Toggle | ✅ | ✅ |
 | Text Field | ✅ | ✅ |
 | Segment Control | ✅ | ✅ |
-| Drop Down | ✅ |  |
+| Drop Down | ✅ | ✅ |
 | Right Click Menu | ✅ |  |
 | Donut Graph | ✅ |  |
 | X-Y Graph | ✅ |  |
