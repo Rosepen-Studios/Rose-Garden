@@ -1,6 +1,6 @@
 <div align="center">
   
-<img width="191" height="189" alt="Rose Garden Icon" src="https://github.com/user-attachments/assets/8c7f21c3-1aa8-4baa-a042-5931cc202f0c" />
+
 
 </div>
 
