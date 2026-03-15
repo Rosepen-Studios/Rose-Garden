@@ -24,11 +24,12 @@ Rose Garden is under development, some components are not yet fully developed or
 | Segment Control | ✅ | ✅ |
 | Drop Down | ✅ | ✅ |
 | Right Click Menu | ✅ |  |
+| Tags | ✅ |  |
+| Section View | ✅ |  |
 | Donut Graph | ✅ |  |
 | X-Y Graph | ✅ |  |
 | Bar Graph | ✅ |  |
 | Hex Graph | ✅ |  |
-| Tags | ✅ |  |
 | Tooltips |  |  |
 | Accordion Menu |  |  |
 
