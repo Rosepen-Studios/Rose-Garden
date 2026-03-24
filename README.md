@@ -41,8 +41,7 @@ Rose Garden is under development, some components are not yet fully developed or
 
 <div align="center">
   
-<img width="192" height="192" alt="No AI Stamp 192" src="https://github.com/user-attachments/assets/3013dfbf-55c2-4182-ae17-ca4ff046e412" />
-
+![No AI Stamp SVG](https://github.com/user-attachments/assets/958a7e8a-f903-4403-be26-3f47712992e5)
 
 
 Developed by Rosepen Studios
