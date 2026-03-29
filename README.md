@@ -29,6 +29,7 @@ Rose Garden is under development, some components are not yet fully developed or
 | Section View | ✅ | ✅ |
 | Tags | ✅ | ✅ |
 | Right Click Menu | ✅ | ✅ |
+| Progress Bar | ✅ |  |
 | Donut Graph | ✅ |  |
 | X-Y Graph | ✅ |  |
 | Bar Graph | ✅ |  |
