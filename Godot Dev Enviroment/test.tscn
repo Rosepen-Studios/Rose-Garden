@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dm5x5yx0k5n1i"]
+
+[ext_resource type="Script" uid="uid://brt6ba61noko8" path="res://test.gd" id="1_g14j6"]
+[ext_resource type="PackedScene" uid="uid://1nk7n70h8a72" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.tscn" id="1_ppyta"]
+[ext_resource type="Script" uid="uid://bgbxminyyyang" path="res://addons/RoseGarden/components/Toggle/RGToggle.gd" id="3_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="3_g14j6"]
+[ext_resource type="PackedScene" uid="uid://n26v0vu3820g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.tscn" id="4_ykrsh"]
+[ext_resource type="Script" uid="uid://uutac5sy1b6g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.gd" id="5_g14j6"]
+
+[node name="Control" type="Control" unique_id=578052263]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g14j6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=471331694]
+
+[node name="RGProgressBar" parent="." unique_id=1750477034 instance=ExtResource("1_ppyta")]
+custom_minimum_size = Vector2(256, 60)
+layout_mode = 0
+offset_left = 718.0
+offset_top = 125.0
+offset_right = 974.0
+offset_bottom = 185.0
+value = 31.95
+color = "Pink"
+
+[node name="Toggle" parent="." unique_id=1372621177 instance=ExtResource("3_g14j6")]
+layout_mode = 1
+anchor_left = 0.1267361
+anchor_top = 0.22067901
+anchor_right = 0.18229167
+anchor_bottom = 0.27623457
+is_toggled = true
+
+[node name="@Control@26299" type="Control" parent="." unique_id=55815389 instance=ExtResource("3_g14j6")]
+custom_minimum_size = Vector2(64, 36)
+layout_mode = 1
+anchor_left = 0.3498264
+anchor_top = 0.1404321
+anchor_right = 0.40538195
+anchor_bottom = 0.19598766
+script = ExtResource("3_6uqi0")
+color = "Orange"
+accessible = true
+is_toggled = true
+metadata/_edit_use_anchors_ = true
+
+[node name="RGSectionView" type="Control" parent="." unique_id=1182488623 instance=ExtResource("4_ykrsh")]
+custom_minimum_size = Vector2(0, 12)
+anchors_preset = 0
+offset_left = 101.0
+offset_top = 112.0
+offset_right = 101.0
+offset_bottom = 124.0
+script = ExtResource("5_g14j6")
+_sections = 5
+
+[connection signal="gui_input" from="RGProgressBar" to="." method="_on_rg_progress_bar_gui_input"]
+[connection signal="gui_input" from="RGSectionView" to="RGSectionView" method="_on_gui_input"]
