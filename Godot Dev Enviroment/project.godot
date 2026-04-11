@@ -23,8 +23,9 @@ Colors="*uid://bbqa440wcdmu1"
 
 [display]
 
-window/size/viewport_width=1200
-window/size/viewport_height=1100
+window/size/viewport_width=1964
+window/size/viewport_height=1336
+window/size/resizable=false
 
 [editor_plugins]
 

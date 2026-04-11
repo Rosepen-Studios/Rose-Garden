@@ -1,5 +1,6 @@
 @tool
 extends Control
+class_name RGToggle
 @onready var base: TextureRect = $TextureRect
 @onready var ball: TextureRect = $Container/TextureRect
 
@@ -13,6 +14,7 @@ signal pressed
 signal toggled(toggled_on:bool)
 
 var _texture_path
+var _hovered:bool = false
 
 func set_color(new_color):
 	if Colors.verify_color(new_color,true) != OK:
@@ -27,6 +29,9 @@ func get_color():
 func toggle():
 	_on_pressed()
 	return OK
+
+func is_hovered():
+	return _hovered
 
 ###############
 #### STOP #### Here begin private function that should never be called by your code
@@ -74,16 +79,21 @@ func _show_on():
 
 func _on_button_up() -> void:
 	button_up.emit()
-	modulate = Colors.COLOR_NORMAL
+	if is_hovered():
+		modulate = Colors.COLOR_HOVERED
+	else:
+		modulate = Colors.COLOR_NORMAL
 
 func _on_button_down() -> void:
 	button_down.emit()
 	modulate = Colors.COLOR_PRESSED
 
 func _on_mouse_entered() -> void:
+	_hovered = true
 	modulate = Colors.COLOR_HOVERED
 
 func _on_mouse_exited() -> void:
+	_hovered = false
 	modulate = Colors.COLOR_NORMAL
 
 func _ready() -> void:

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cx0h5q53ujvq5"
-path="res://.godot/imported/SF Pro Rounded Regular.otf-9525d0b2db5a59be4cfebcca8c184e4a.fontdata"
+uid="uid://bu3e0pv0xd77h"
+path="res://.godot/imported/Medium.otf-4db6994097954bf4878de37df2ae1a73.fontdata"
 
 [deps]
 
-source_file="res://addons/RoseGarden/fonts/SF Pro Rounded Regular.otf"
-dest_files=["res://.godot/imported/SF Pro Rounded Regular.otf-9525d0b2db5a59be4cfebcca8c184e4a.fontdata"]
+source_file="res://addons/RoseGarden/fonts/Medium.otf"
+dest_files=["res://.godot/imported/Medium.otf-4db6994097954bf4878de37df2ae1a73.fontdata"]
 
 [params]
 

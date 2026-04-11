@@ -41,6 +41,7 @@ func get_color():
 func _ready() -> void:
 	_update()
 	_value_update()
+	RoseGarden.custom_textures_changed.connect(_update)
 
 func _update():
 	match text_alignment:
@@ -56,9 +57,9 @@ func _update():
 	bar.value = value
 	value_text.text = str(int(value))+"%"
 
-	bar.texture_progress = load("res://addons/RoseGarden/components/ProgressBar/Progress/Progress "+color+".svg")
-	bar.texture_over = load("res://addons/RoseGarden/components/ProgressBar/Top/Top "+color+".svg")
-	bar.texture_under = load("res://addons/RoseGarden/components/ProgressBar/Bottom/Bottom "+color+".svg")
+	bar.texture_progress = load(RoseGarden._file_path+"ProgressBar/Progress/Progress "+color+".svg")
+	bar.texture_over = load(RoseGarden._file_path+"ProgressBar/Top/Top "+color+".svg")
+	bar.texture_under = load(RoseGarden._file_path+"ProgressBar/Bottom/Bottom "+color+".svg")
 
 	if custom_minimum_size < Vector2(60,60):
 		custom_minimum_size = Vector2(60,60)

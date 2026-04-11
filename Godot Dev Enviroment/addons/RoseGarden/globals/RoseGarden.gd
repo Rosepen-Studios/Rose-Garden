@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 #Accessibility
@@ -17,6 +18,91 @@ class Accessibility:
 	static func get_increase_contrast():
 		return increaseContrast
 
+#Colors
+class CustomColors:
+	const GRAY_HIGHLIGHT = Color("414141")
+	const WHITE_HIGHLIGHT = Color("DADADA")
+	const RED_HIGHLIGHT = Color("E74747")
+	const ORANGE_HIGHLIGHT = Color("FBA051")
+	const YELLOW_HIGHLIGHT = Color("FFDC58")
+	const GREEN_HIGHLIGHT = Color("4BF14F")
+	const TEAL_HIGHLIGHT = Color("8FFFF2")
+	const BLUE_HIGHLIGHT = Color("4B9CED")
+	const PINK_HIGHLIGHT = Color("FF85C4")
+	const PURPLE_HIGHLIGHT = Color("935CF7")
+
+	const GRAY = "Gray"
+	const WHITE = "White"
+	const RED = "Red"
+	const ORANGE = "Orange"
+	const YELLOW = "Yellow"
+	const GREEN = "Green"
+	const TEAL = "Teal"
+	const BLUE = "Blue"
+	const PINK = "Pink"
+	const PURPLE = "Purple"
+
+	const COLOR_NORMAL = Color(1,1,1)
+	const COLOR_PRESSED = Color(0.65,0.65,0.65)
+	const COLOR_HOVERED = Color(0.85,0.85,0.85)
+	const COLOR_DISABLED = Color(0.6,0.6,0.6)
+	const COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
+
+	const TEXT_MAIN = Color("F5F5F5")
+	const TEXT_SECONDARY = Color("ACACAC")
+	const TEXT_DARK = Color("0A0A0A")
+
+	static func verify_color(color:String,use_easter_eggs:bool=false):
+		if !use_easter_eggs:
+			match color:
+				GRAY,WHITE,RED,ORANGE,YELLOW,GREEN,TEAL,BLUE,PINK,PURPLE:
+					return OK
+				_:
+					return Error.ERR_INVALID_PARAMETER
+
+		else:
+			match color:
+				GRAY,WHITE,RED,ORANGE,YELLOW,GREEN,TEAL,BLUE,PINK,PURPLE,"Tasker":
+					return OK
+				_:
+					return Error.ERR_INVALID_PARAMETER
+
+#Icons
+class CustomIcons:
+	const icons_path = "res://addons/RoseGarden/icons/"
+
+	const HOME = preload(icons_path+"/Home.svg")
+	const CHECKLIST = preload(icons_path+"/Checklist.svg")
+	const BOOK = preload(icons_path+"/Book.svg")
+	const TRASH = preload(icons_path+"/Trash.svg")
+	const PREVIOUS = preload(icons_path+"/Previous.svg")
+	const NEXT = preload(icons_path+"/Next.svg")
+	const SCISSORS = preload(icons_path+"/Scissors.svg")
+	const UP = preload(icons_path+"/Up.svg")
+	const DOWN = preload(icons_path+"/DOWN.svg")
+
+	static func get_icon(icon_name:String):
+		if !FileAccess.file_exists(icons_path+icon_name+".svg"):
+			return ERR_DOES_NOT_EXIST
+		return load(icons_path+icon_name+".svg")
+
+#Custom Textures
+var useCustomTextures:bool = false
+var customTexturePath:String = ""
+var _file_path:String = "res://addons/RoseGarden/components/"
+signal custom_textures_changed
+
+func set_use_custom_textures(value:bool):
+	useCustomTextures = value
+
+func set_custom_texture_path(path:String):
+	if !FileAccess.file_exists(path):
+		push_error("RoseGarden: The provided custom texture path does not exist.")
+		return
+	customTexturePath = path
+	_file_path = path+"/"
+func _get_file_path():
+	return _file_path
 #Right Click Menu Functions
 var menu_layer:CanvasLayer
 var submenu:RGRighClickMenu

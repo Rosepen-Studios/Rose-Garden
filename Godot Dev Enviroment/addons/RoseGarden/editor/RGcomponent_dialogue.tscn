@@ -58,34 +58,38 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jpdfl")
-item_count = 8
+item_count = 10
 item_0/text = "Drop Down"
-item_1/text = "Text Field"
-item_2/text = "Progress Bar"
-item_3/text = "Toggle"
-item_4/text = "Button"
-item_5/text = "Section View"
-item_6/text = "Tag"
-item_7/text = "Segment Control"
+item_1/text = "Segment Control Icon"
+item_2/text = "Text Field"
+item_3/text = "Progress Bar"
+item_4/text = "Toggle"
+item_5/text = "Button"
+item_6/text = "Section View"
+item_7/text = "Text"
+item_8/text = "Tag"
+item_9/text = "Segment Control"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Background/MarginContainer/VBoxContainer" unique_id=436144396]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 bbcode_enabled = true
-text = "[b]Rose garden[/b]
+text = "[b]Rose Garden[/b]
 Select which component you wan to add to your scene tree.
-Rose Garden is a Modern UI library designed by Rosepen Studios, you can find the documentation at placeholder.com"
+Rose Garden is a modern UI library designed by Rosepen Studios, you can find the documentation at placeholder.com"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer" unique_id=1204631581]
 layout_mode = 2
 alignment = 2
 
-[node name="ButtonCancel" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer" unique_id=561723419]
+[node name="ButtonCancel" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer" unique_id=482217772]
 layout_mode = 2
 text = "Cancel"
 
-[node name="ButtonAdd" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1799164922]
+[node name="ButtonAdd" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer" unique_id=419969029]
 layout_mode = 2
 text = "Add"
 
+[connection signal="text_changed" from="Background/MarginContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="Background/MarginContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="item_selected" from="Background/MarginContainer/VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]

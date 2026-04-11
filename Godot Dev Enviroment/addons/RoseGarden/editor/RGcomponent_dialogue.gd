@@ -67,6 +67,8 @@ func _to_display_name(folder_name: String) -> String:
 
 func _on_search_changed(text: String) -> void:
 	_populate_list(text)
+	if list.item_count > 0:
+		list.select(0)
 
 func _on_add_pressed() -> void:
 	var selected := list.get_selected_items()
@@ -93,3 +95,48 @@ func _on_item_list_item_selected(index: int) -> void:
 	description.visible = true
 	var file = FileAccess.open(path, FileAccess.READ)
 	description.text = file.get_as_text()
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+				KEY_ENTER, KEY_KP_ENTER:
+					_on_add_pressed()
+				KEY_ESCAPE:
+					hide()
+
+func _on_line_edit_text_submitted(new_text: String) -> void:
+	list.select(0)
+	_on_add_pressed()
+
+func _input(event: InputEvent) -> void:
+	if not visible:
+		return
+	if not (event is InputEventKey) or not event.pressed:
+		return
+
+	match event.keycode:
+		KEY_UP, KEY_DOWN:
+			# Hand focus and navigation to the list without leaving the search bar
+			var current := list.get_selected_items()
+			var next_idx: int
+
+			if current.is_empty():
+				next_idx = 0
+			else:
+				var current_idx: int = current[0]
+				if event.keycode == KEY_DOWN:
+					next_idx = min(current_idx + 1, list.item_count - 1)
+				else:
+					next_idx = max(current_idx - 1, 0)
+
+			list.select(next_idx)
+			list.ensure_current_is_visible()
+			get_viewport().set_input_as_handled()
+
+		KEY_ENTER, KEY_KP_ENTER:
+			_on_add_pressed()
+			get_viewport().set_input_as_handled()
+
+		KEY_ESCAPE:
+			hide()
+			get_viewport().set_input_as_handled()

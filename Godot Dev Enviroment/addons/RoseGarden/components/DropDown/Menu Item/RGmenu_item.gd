@@ -20,7 +20,7 @@ func _update():
 	else:
 		selected = false
 
-	var filename = "res://assets/RoseGarden/components/DropDown/"
+	var filename = RoseGarden._file_path+"DropDown/"
 	if selected:
 		filename += "Selected"
 	else:
@@ -38,6 +38,7 @@ func _update():
 func _ready() -> void:
 	get_parent()._highlighted.connect(change_highlight)
 	_update()
+	RoseGarden.custom_textures_changed.connect(_update)
 
 
 func _pressed() -> void:

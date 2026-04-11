@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://n0eesastugb5"
-path="res://.godot/imported/SF-Pro-Display-Regular.otf-f65d69c0468c4ab010faa53e0f768ae7.fontdata"
+uid="uid://dhgf2kuypgq6i"
+path="res://.godot/imported/RoundedLight.otf-591bc43e57e2a5e628c73174540d6b6e.fontdata"
 
 [deps]
 
-source_file="res://addons/RoseGarden/fonts/SF-Pro-Display-Regular.otf"
-dest_files=["res://.godot/imported/SF-Pro-Display-Regular.otf-f65d69c0468c4ab010faa53e0f768ae7.fontdata"]
+source_file="res://addons/RoseGarden/fonts/RoundedLight.otf"
+dest_files=["res://.godot/imported/RoundedLight.otf-591bc43e57e2a5e628c73174540d6b6e.fontdata"]
 
 [params]
 

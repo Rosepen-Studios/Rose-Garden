@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn3f601pkm6rt"
-path="res://.godot/imported/Selection.svg-1621009a7837536c3dc6ba4741ef4a52.ctex"
+uid="uid://btwhtoevk81fo"
+path="res://.godot/imported/Container.svg-7b2029b05b57d91c3c09edd9c01fe495.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/RoseGarden/components/SegmentControl/Icon/Selection.svg"
-dest_files=["res://.godot/imported/Selection.svg-1621009a7837536c3dc6ba4741ef4a52.ctex"]
+source_file="res://addons/RoseGarden/components/SegmentControlIcon/Container.svg"
+dest_files=["res://.godot/imported/Container.svg-7b2029b05b57d91c3c09edd9c01fe495.ctex"]
 
 [params]
 

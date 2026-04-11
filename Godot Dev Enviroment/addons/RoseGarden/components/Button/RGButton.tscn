@@ -1,27 +1,25 @@
 [gd_scene format=3 uid="uid://bb73lbvti8wp6"]
 
 [ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="1_pa7x6"]
-[ext_resource type="Texture2D" uid="uid://c4u5gv4vtcy7x" path="res://addons/RoseGarden/icons/Home.svg" id="2_rmdqs"]
 [ext_resource type="Texture2D" uid="uid://cmj5vysrpsml7" path="res://addons/RoseGarden/components/Button/Base/BaseGray.svg" id="3_uaxtl"]
 [ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://addons/RoseGarden/themes/Text/Secondary.tres" id="4_uaxtl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ir1hl"]
 
 [node name="RGButton" type="Control" unique_id=1426858299]
-custom_minimum_size = Vector2(240, 60)
+custom_minimum_size = Vector2(192, 60)
 layout_mode = 3
 anchor_right = 0.093
 offset_right = -0.80000305
 offset_bottom = 60.0
-pivot_offset = Vector2(120.5, 30)
+pivot_offset = Vector2(96, 30)
 script = ExtResource("1_pa7x6")
-icon = ExtResource("2_rmdqs")
 metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=885916875]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
-offset_right = 241.0
+offset_right = 192.0
 offset_bottom = 60.0
 texture = ExtResource("3_uaxtl")
 patch_margin_left = 30
@@ -32,7 +30,7 @@ patch_margin_bottom = 30
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1282823819]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
-offset_right = 241.0
+offset_right = 192.0
 offset_bottom = 60.0
 alignment = 1
 
@@ -60,7 +58,6 @@ vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1107408437]
 layout_mode = 2
-texture = ExtResource("2_rmdqs")
 
 [node name="Button" type="Button" parent="." unique_id=1653572253]
 layout_mode = 1

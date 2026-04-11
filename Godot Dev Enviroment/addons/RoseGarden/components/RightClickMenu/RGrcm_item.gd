@@ -14,6 +14,8 @@ var is_destructive = false
 var is_submenu:bool = false
 var manager:RGRighClickMenu
 
+func _ready() -> void:
+	RoseGarden.custom_textures_changed.connect(update)
 func update():
 	title_label.text = title
 	icon_container.texture = icon
@@ -28,10 +30,10 @@ func _on_button_mouse_entered() -> void:
 	manager.selection.visible = true
 	@warning_ignore("narrowing_conversion")
 	manager.select_position(position.y,is_destructive)
-	
+
 	if is_submenu or manager.modulate == Color(1,1,1,0):
 		return
-		
+
 	manager.update_selection(is_menu)
 	if is_menu:
 		RoseGarden._delete_submenu_instantly()
@@ -48,6 +50,6 @@ func _on_button_pressed() -> void:
 		action.call()
 	else:
 		action.call(action_params)
-	
+
 func _on_button_mouse_exited() -> void:
 	manager.selection.visible = false

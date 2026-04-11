@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cvkq32x5xwseu"
-path="res://.godot/imported/SF-Pro-Display-Light.otf-38470cbd641c7a67d027a4b1e1f98dda.fontdata"
+path="res://.godot/imported/Light.otf-930c10b61a97a251a12f57e464df6ca1.fontdata"
 
 [deps]
 
-source_file="res://addons/RoseGarden/fonts/SF-Pro-Display-Light.otf"
-dest_files=["res://.godot/imported/SF-Pro-Display-Light.otf-38470cbd641c7a67d027a4b1e1f98dda.fontdata"]
+source_file="res://addons/RoseGarden/fonts/Light.otf"
+dest_files=["res://.godot/imported/Light.otf-930c10b61a97a251a12f57e464df6ca1.fontdata"]
 
 [params]
 

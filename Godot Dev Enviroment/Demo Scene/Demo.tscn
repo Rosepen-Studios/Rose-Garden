@@ -1,0 +1,377 @@
+[gd_scene format=3 uid="uid://dm5x5yx0k5n1i"]
+
+[ext_resource type="Script" uid="uid://brt6ba61noko8" path="res://Demo Scene/Demo.gd" id="1_j13fd"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_ax66q"]
+[ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://addons/RoseGarden/components/DropDown/RGDropDown.tscn" id="4_spkjv"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="5_spkjv"]
+[ext_resource type="Texture2D" uid="uid://c4u5gv4vtcy7x" path="res://addons/RoseGarden/icons/Home.svg" id="7_spkjv"]
+[ext_resource type="Texture2D" uid="uid://b6s4mqqehkima" path="res://addons/RoseGarden/icons/Book.svg" id="8_odige"]
+[ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://addons/RoseGarden/components/TextField/RGTextField.tscn" id="9_odige"]
+[ext_resource type="Texture2D" uid="uid://bj47hidjlap3s" path="res://addons/RoseGarden/icons/Checklist.svg" id="9_pelkp"]
+[ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="10_pelkp"]
+[ext_resource type="PackedScene" uid="uid://bspdiaf7ktvjm" path="res://addons/RoseGarden/components/SegmentControlIcon/RGSegmentControlIcon.tscn" id="11_7xfal"]
+[ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://addons/RoseGarden/components/SegmentControl/RGSegmentControl.tscn" id="12_nnehe"]
+
+[sub_resource type="Gradient" id="Gradient_2enyd"]
+offsets = PackedFloat32Array(0.48630136)
+colors = PackedColorArray(0.011764706, 0.011764706, 0.011764706, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j13fd"]
+gradient = SubResource("Gradient_2enyd")
+
+[node name="Control" type="Control" unique_id=1345636034]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j13fd")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1095311505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_j13fd")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1773463230]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1630560215]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=259344921]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Accent Selection" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1487963864]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/HBoxContainer/Accent Selection" unique_id=85953319 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(204, 29)
+layout_mode = 2
+text = "Select accent color:"
+vertical_alignment = "Center"
+
+[node name="RGDrop Down" parent="MarginContainer/HBoxContainer/Accent Selection" unique_id=1673271566 instance=ExtResource("4_spkjv")]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1590471881]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/HBoxContainer/Buttons" unique_id=1322515576 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(69, 29)
+layout_mode = 2
+text = "Button"
+
+[node name="RGText2" parent="MarginContainer/HBoxContainer/Buttons" unique_id=757327958 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(131, 25)
+layout_mode = 2
+text = "Button with text"
+font_size = "Secondary"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Buttons" unique_id=1872344085]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGButton" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer2" unique_id=1426858299 instance=ExtResource("5_spkjv")]
+layout_mode = 2
+
+[node name="@Control@38105" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer2" unique_id=513220960 instance=ExtResource("5_spkjv")]
+layout_mode = 2
+color = "White"
+
+[node name="@Control@39673" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer2" unique_id=748742472 instance=ExtResource("5_spkjv")]
+layout_mode = 2
+color = "Red"
+
+[node name="RGText3" parent="MarginContainer/HBoxContainer/Buttons" unique_id=1114825123 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(135, 25)
+layout_mode = 2
+text = "Button with icon"
+font_size = "Secondary"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Buttons" unique_id=1773143181]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGButton" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer4" unique_id=812862515 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("7_spkjv")
+
+[node name="_Control_38105" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer4" unique_id=853319055 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "White"
+text = ""
+icon = ExtResource("8_odige")
+
+[node name="_Control_39673" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer4" unique_id=1212403859 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Red"
+text = ""
+icon = ExtResource("9_pelkp")
+
+[node name="RGText4" parent="MarginContainer/HBoxContainer/Buttons" unique_id=325066525 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(206, 25)
+layout_mode = 2
+text = "Button with text and icon"
+font_size = "Secondary"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Buttons" unique_id=865766026]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGButton" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer3" unique_id=1065278567 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 2
+icon = ExtResource("7_spkjv")
+
+[node name="_Control_38105" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer3" unique_id=154791432 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 2
+color = "White"
+icon = ExtResource("7_spkjv")
+
+[node name="_Control_39673" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer3" unique_id=577222635 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 2
+color = "Red"
+icon = ExtResource("7_spkjv")
+
+[node name="RGText5" parent="MarginContainer/HBoxContainer/Buttons" unique_id=1137479331 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(162, 25)
+layout_mode = 2
+text = "Connected Buttons"
+font_size = "Secondary"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Buttons" unique_id=306324092]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5" unique_id=991644246]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RGButton" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5/HBoxContainer" unique_id=984046405 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("7_spkjv")
+connection = "Right"
+
+[node name="RGButton2" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5/HBoxContainer" unique_id=142851056 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("7_spkjv")
+connection = "Both"
+
+[node name="RGButton3" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5/HBoxContainer" unique_id=923773267 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("7_spkjv")
+connection = "Left"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5" unique_id=1244368118]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RGButton" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5/HBoxContainer2" unique_id=1673963246 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "White"
+text = ""
+icon = ExtResource("8_odige")
+connection = "Right"
+
+[node name="RGButton2" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5/HBoxContainer2" unique_id=1054273892 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "White"
+text = ""
+icon = ExtResource("8_odige")
+connection = "Both"
+
+[node name="RGButton3" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5/HBoxContainer2" unique_id=342641719 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "White"
+text = ""
+icon = ExtResource("8_odige")
+connection = "Left"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5" unique_id=1851105697]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RGButton" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5/HBoxContainer3" unique_id=1778807480 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Red"
+text = ""
+icon = ExtResource("9_pelkp")
+connection = "Right"
+
+[node name="RGButton2" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5/HBoxContainer3" unique_id=1786988954 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Red"
+text = ""
+icon = ExtResource("9_pelkp")
+connection = "Both"
+
+[node name="RGButton3" parent="MarginContainer/HBoxContainer/Buttons/HBoxContainer5/HBoxContainer3" unique_id=350203631 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Red"
+text = ""
+icon = ExtResource("9_pelkp")
+connection = "Left"
+
+[node name="Toggles" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=895714684]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/HBoxContainer/Toggles" unique_id=1054101341 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(69, 29)
+layout_mode = 2
+text = "Toggle"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Toggles" unique_id=291787117]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/HBoxContainer/Toggles/HBoxContainer" unique_id=677088549 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(61, 25)
+layout_mode = 2
+text = "Normal"
+font_size = "Secondary"
+vertical_alignment = "Center"
+
+[node name="Toggle" parent="MarginContainer/HBoxContainer/Toggles/HBoxContainer" unique_id=1372621177 instance=ExtResource("10_pelkp")]
+layout_mode = 2
+is_toggled = true
+
+[node name="RGText2" parent="MarginContainer/HBoxContainer/Toggles/HBoxContainer" unique_id=824416542 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(91, 25)
+layout_mode = 2
+text = "Accessible"
+font_size = "Secondary"
+vertical_alignment = "Center"
+
+[node name="Toggle2" parent="MarginContainer/HBoxContainer/Toggles/HBoxContainer" unique_id=343847081 instance=ExtResource("10_pelkp")]
+layout_mode = 2
+accessible = true
+is_toggled = true
+
+[node name="Text Fields" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=982707486]
+layout_mode = 2
+
+[node name="RGText" parent="MarginContainer/HBoxContainer/Text Fields" unique_id=1663553950 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(97, 29)
+layout_mode = 2
+text = "Text Field"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Text Fields" unique_id=1736026933]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText4" parent="MarginContainer/HBoxContainer/Text Fields/HBoxContainer" unique_id=852884895 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(75, 29)
+layout_mode = 2
+text = "Normal"
+vertical_alignment = "Center"
+
+[node name="RGTextField" parent="MarginContainer/HBoxContainer/Text Fields/HBoxContainer" unique_id=808777957 instance=ExtResource("9_odige")]
+custom_minimum_size = Vector2(256, 60)
+layout_mode = 2
+placeholder_text = "Type here"
+
+[node name="RGText2" parent="MarginContainer/HBoxContainer/Text Fields/HBoxContainer" unique_id=1374507826 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(67, 29)
+layout_mode = 2
+text = "Secret"
+vertical_alignment = "Center"
+
+[node name="RGTextField2" parent="MarginContainer/HBoxContainer/Text Fields/HBoxContainer" unique_id=1631835759 instance=ExtResource("9_odige")]
+custom_minimum_size = Vector2(256, 60)
+layout_mode = 2
+placeholder_text = "Enter password"
+secret = true
+
+[node name="RGText3" parent="MarginContainer/HBoxContainer/Text Fields/HBoxContainer" unique_id=25960398 instance=ExtResource("2_ax66q")]
+layout_mode = 2
+text = "Hint"
+vertical_alignment = "Center"
+
+[node name="RGTextField3" parent="MarginContainer/HBoxContainer/Text Fields/HBoxContainer" unique_id=1417533016 instance=ExtResource("9_odige")]
+custom_minimum_size = Vector2(256, 60)
+layout_mode = 2
+placeholder_text = "Search..."
+show_hint = true
+
+[node name="Segment Controls" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1937234361]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/HBoxContainer/Segment Controls" unique_id=1724188587 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(175, 29)
+layout_mode = 2
+text = "Segment Control"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Segment Controls" unique_id=5991725]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/HBoxContainer/Segment Controls/HBoxContainer" unique_id=170706215 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(35, 25)
+layout_mode = 2
+font_size = "Secondary"
+vertical_alignment = "Center"
+
+[node name="RGSegmentControl" parent="MarginContainer/HBoxContainer/Segment Controls/HBoxContainer" unique_id=973767052 instance=ExtResource("12_nnehe")]
+layout_mode = 2
+
+[node name="RGText2" parent="MarginContainer/HBoxContainer/Segment Controls/HBoxContainer" unique_id=53202989 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(36, 25)
+layout_mode = 2
+text = "Icon"
+font_size = "Secondary"
+vertical_alignment = "Center"
+
+[node name="RGSegmentControlIcon" parent="MarginContainer/HBoxContainer/Segment Controls/HBoxContainer" unique_id=1133264568 instance=ExtResource("11_7xfal")]
+layout_mode = 2
+
+[node name="Drop Down" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=411244822]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/HBoxContainer/Drop Down" unique_id=1555786665 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(179, 29)
+layout_mode = 2
+text = "Drop Down Menu"
+
+[node name="RGDrop Down" parent="MarginContainer/HBoxContainer/Drop Down" unique_id=1420824862 instance=ExtResource("4_spkjv")]
+layout_mode = 2
+
+[connection signal="new_selection" from="MarginContainer/HBoxContainer/Accent Selection/RGDrop Down" to="." method="_on_rg_drop_down_new_selection"]
+[connection signal="text_submitted" from="MarginContainer/HBoxContainer/Text Fields/HBoxContainer/RGTextField2" to="." method="_on_text_field_secret_text_submitted"]

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bu3e0pv0xd77h"
-path="res://.godot/imported/SF-Pro-Display-Medium.otf-a5ed7a248b05ead6c2d5c094b77473d3.fontdata"
+uid="uid://d0qdmlqtq5rov"
+path="res://.godot/imported/Bold.otf-6318bb811b9558a54bd9675687ca43e9.fontdata"
 
 [deps]
 
-source_file="res://addons/RoseGarden/fonts/SF-Pro-Display-Medium.otf"
-dest_files=["res://.godot/imported/SF-Pro-Display-Medium.otf-a5ed7a248b05ead6c2d5c094b77473d3.fontdata"]
+source_file="res://addons/RoseGarden/fonts/Bold.otf"
+dest_files=["res://.godot/imported/Bold.otf-6318bb811b9558a54bd9675687ca43e9.fontdata"]
 
 [params]
 
@@ -30,13 +30,7 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0),
-&"variation_embolden": 0.0
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}

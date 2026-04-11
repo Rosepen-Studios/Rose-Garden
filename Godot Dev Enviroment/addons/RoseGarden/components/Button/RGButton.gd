@@ -24,6 +24,8 @@ signal button_up
 signal pressed
 signal toggled(toggled_on:bool)
 
+var _hovered:bool = false
+
 func set_color(new_color:String):
 	if !Engine.is_editor_hint():
 		if Colors.verify_color(new_color,true) != OK:
@@ -31,13 +33,13 @@ func set_color(new_color:String):
 	color = new_color
 	match connection:
 		"None":
-			base.texture = load("res://addons/RoseGarden/components/Button/Base/Base"+color+".svg")
+			base.texture = load(RoseGarden._get_file_path()+"Button/Base/Base"+color+".svg")
 		"Left":
-			base.texture = load("res://addons/RoseGarden/components/Button/BaseLeft/Base"+color+".svg")
+			base.texture = load(RoseGarden._get_file_path()+"Button/BaseLeft/Base"+color+".svg")
 		"Right":
-			base.texture = load("res://addons/RoseGarden/components/Button/BaseRight/Base"+color+".svg")
+			base.texture = load(RoseGarden._get_file_path()+"Button/BaseRight/Base"+color+".svg")
 		"Both":
-			base.texture = load("res://addons/RoseGarden/components/Button/BaseBoth/Base"+color+".svg")
+			base.texture = load(RoseGarden._get_file_path()+"Button/BaseBoth/Base"+color+".svg")
 	if color == "White" or ((color == "Yellow" or color == "Green" or color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):
 		label.modulate = Color(0,0,0)
 		texture.modulate = Color(0,0,0)
@@ -62,6 +64,9 @@ func get_icon():
 
 func get_text():
 	return text
+
+func is_hovered():
+	return _hovered
 
 ##############
 #### STOP #### Here begin private function that should never be called by your code
@@ -108,6 +113,7 @@ func _update():
 func _ready() -> void:
 	set_color(color)
 	_update()
+	RoseGarden.custom_textures_changed.connect(_update_textures)
 
 func _mirror_to_button():
 	button.disabled = disabled
@@ -130,9 +136,15 @@ func _on_button_down() -> void:
 
 func _on_button_up() -> void:
 	if disabled:
-		modulate = Colors.COLOR_DISABLED_NORMAL
+		if is_hovered():
+			modulate = Colors.COLOR_DISABLED_HOVERED
+		else:
+			modulate = Colors.COLOR_DISABLED
 	else:
-		modulate = Colors.COLOR_NORMAL
+		if is_hovered():
+			modulate = Colors.COLOR_HOVERED
+		else:
+			modulate = Colors.COLOR_NORMAL
 	button_up.emit()
 	if RoseGarden.Accessibility.get_disable_animations():
 		return
@@ -145,13 +157,26 @@ func _on_toggled(toggled_on: bool) -> void:
 	toggled.emit(toggled_on)
 
 func _on_mouse_entered() -> void:
+	_hovered = true
 	if disabled:
 		modulate = Colors.COLOR_DISABLED_HOVERED
 	else:
 		modulate = Colors.COLOR_HOVERED
 
 func _on_mouse_exited() -> void:
+	_hovered = false
 	if disabled:
 		modulate = Colors.COLOR_DISABLED
 	else:
 		modulate = Colors.COLOR_NORMAL
+
+func _update_textures():
+	match connection:
+		"None":
+			base.texture = load(RoseGarden._get_file_path()+"Button/Base/Base"+color+".svg")
+		"Left":
+			base.texture = load(RoseGarden._get_file_path()+"Button/BaseLeft/Base"+color+".svg")
+		"Right":
+			base.texture = load(RoseGarden._get_file_path()+"Button/BaseRight/Base"+color+".svg")
+		"Both":
+			base.texture = load(RoseGarden._get_file_path()+"Button/BaseBoth/Base"+color+".svg")

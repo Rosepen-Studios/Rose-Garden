@@ -8,6 +8,7 @@ class_name RGDropDown
 @onready var button: Button = $Button
 @onready var selection: NinePatchRect = $CanvasLayer/NinePatchRect2/SelectionContainer/Container/Selection
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var arrow: TextureRect = $NinePatchRect/MarginContainer/HBoxContainer2/VBoxContainer/TextureRect
 
 @export var instant_selection:bool = false##Instantly move the selection to the hovered item with no animation
 var items:Array = []
@@ -62,6 +63,9 @@ func get_selected_item():
 ##############
 #### STOP #### Here begin private function that should never be called by your code
 ##############
+##
+func _ready() -> void:
+	RoseGarden.custom_textures_changed.connect(_update_textures)
 
 func _update():
 	if !Engine.is_editor_hint():
@@ -75,6 +79,8 @@ func _update():
 	menu_container.custom_minimum_size.x = size.x
 	button.custom_minimum_size = size
 	label.text = items[_find_index(item_ids,selected)]
+
+
 
 func _array_has_item(array:Array,item):
 	var found := false
@@ -95,6 +101,8 @@ func _open():
 	menu_container.position = global_position
 	for child in menu_item_container.get_children():
 		child._update()
+		if _find_index(item_ids,child.id) == 0:
+			child.highlighted = true
 	menu_container.visible=true
 	_update()
 	selection.visible = true
@@ -139,3 +147,9 @@ func _on_button_up() -> void:
 
 func _on_button_down() -> void:
 	modulate = Colors.COLOR_PRESSED
+
+func _update_textures():
+	container.texture = load(RoseGarden._file_path+"DropDown/Container.svg")
+	arrow.texture = load(RoseGarden._file_path+"DropDown/Arrow.svg")
+	menu_container.texture = load(RoseGarden._file_path+"DropDown/Container.svg")
+	selection.texture = load(RoseGarden._file_path+"DropDown/Selection.svg")
