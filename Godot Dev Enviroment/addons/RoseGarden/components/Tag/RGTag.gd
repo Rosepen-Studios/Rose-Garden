@@ -9,7 +9,7 @@ class_name RGTag
 @export var text:String = "Tag"
 
 func set_color(new_color:String):
-	if Colors.verify_color(new_color) != OK:
+	if RoseGarden.Colors.verify_color(new_color) != OK:
 		return ERR_INVALID_PARAMETER
 	color = new_color
 	_update()
@@ -27,31 +27,38 @@ func get_text():
 	return text
 
 ###############
-#### STOP #### Here begin private function that should never be called by your code
+#### STOP #### Here begin private functions that should never be called by your code
 ###############
 
 func _get_color_highlight():
 	match color:
-		"Red": return Colors.RED_HIGHLIGHT
-		"Orange": return Colors.ORANGE_HIGHLIGHT
-		"Yellow": return Colors.YELLOW_HIGHLIGHT
-		"Green": return Colors.GREEN_HIGHLIGHT
-		"Teal": return Colors.TEAL_HIGHLIGHT
-		"Blue": return Colors.BLUE_HIGHLIGHT
-		"Pink": return Colors.PINK_HIGHLIGHT
-		"Purple": return Colors.PURPLE_HIGHLIGHT
+		"Red": return RoseGarden.Colors.RED_HIGHLIGHT
+		"Orange": return RoseGarden.Colors.ORANGE_HIGHLIGHT
+		"Yellow": return RoseGarden.Colors.YELLOW_HIGHLIGHT
+		"Green": return RoseGarden.Colors.GREEN_HIGHLIGHT
+		"Teal": return RoseGarden.Colors.TEAL_HIGHLIGHT
+		"Blue": return RoseGarden.Colors.BLUE_HIGHLIGHT
+		"Pink": return RoseGarden.Colors.PINK_HIGHLIGHT
+		"Purple": return RoseGarden.Colors.PURPLE_HIGHLIGHT
 
 func _update():
-	size.x = label_container.get_minimum_size().x
-	container.size.x = size.x
 	label.text = text
 	label.modulate = _get_color_highlight()
-	container.texture = load("res://addons/RoseGarden/components/Tag/" + color + ".svg")
-	position.x = 0
+	size.x = label_container.get_minimum_size().x
+	container.size.x = size.x
+	container.texture = load(RoseGarden._file_path+"Tag/" + color + ".svg")
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_update()
 
 func _ready() -> void:
+	RoseGarden.custom_textures_changed.connect(_update)
+	RoseGarden.custom_themes_changed.connect(_update_themes)
+	_update_themes()
+	await get_tree().create_timer(0.1).timeout
 	_update()
+	
+
+func _update_themes():
+	label.theme = RoseGarden.Themes.Secondary

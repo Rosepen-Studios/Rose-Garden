@@ -25,7 +25,7 @@ func get_value():
 	return bar.value
 
 func set_color(new_color:String):
-	if !Colors.verify_color(new_color) == OK:
+	if !RoseGarden.Colors.verify_color(new_color) == OK:
 		return ERR_INVALID_PARAMETER
 	color = new_color
 	_update()
@@ -34,14 +34,23 @@ func set_color(new_color:String):
 func get_color():
 	return color
 
+func tween_value(new_value:float, duration:float,trans := Tween.TRANS_SINE):
+	var tween = create_tween()
+	tween.tween_property(self, "value", new_value, duration).set_trans(trans)
+	if new_value < 0 or new_value > 100:
+		return ERR_INVALID_PARAMETER
+	return OK
+
 ##############
 #### STOP #### Here begin private function that should never be called by your code
 ##############
 
 func _ready() -> void:
-	_update()
 	_value_update()
 	RoseGarden.custom_textures_changed.connect(_update)
+	RoseGarden.custom_themes_changed.connect(_update_themes)
+	_update()
+	_update_themes()
 
 func _update():
 	match text_alignment:
@@ -96,3 +105,6 @@ func _value_update():
 					value_text.modulate = Color(0,0,0)
 	else:
 		value_text.modulate = Color(1,1,1)
+
+func _update_themes():
+	value_text.theme = RoseGarden.Themes.Secondary

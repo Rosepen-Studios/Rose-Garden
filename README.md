@@ -30,6 +30,8 @@ Rose Garden is under development, some components are not yet fully developed or
 | Tags | ✅ | ✅ |
 | Right Click Menu | ✅ | ✅ |
 | Progress Bar | ✅ | ✅ |
+| Text | ✅ | ✅ |
+| Container | ✅ | ✅ |
 | Donut Graph | ✅ |  |
 | X-Y Graph | ✅ |  |
 | Bar Graph | ✅ |  |
@@ -47,4 +49,3 @@ Rose Garden is under development, some components are not yet fully developed or
 
 Developed by Rosepen Studios
 </div>
-

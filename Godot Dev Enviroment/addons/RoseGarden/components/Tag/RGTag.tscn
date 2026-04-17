@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" uid="uid://b4j60wv02vq6a" path="res://addons/RoseGarden/components/Tag/RGTag.gd" id="1_3um53"]
 [ext_resource type="Texture2D" uid="uid://ewrku150e0ip" path="res://addons/RoseGarden/components/Tag/Red.svg" id="2_3um53"]
-[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://addons/RoseGarden/themes/Text/Secondary.tres" id="3_yusch"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="2_tgujf"]
 
 [node name="RGTag" type="Control" unique_id=1946555419]
-custom_minimum_size = Vector2(95, 40)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 95.0
 offset_bottom = 40.0
+size_flags_horizontal = 2
 script = ExtResource("1_3um53")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1143154954]
-custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -27,7 +27,7 @@ patch_margin_bottom = 20
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=1867613676]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 95.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_right = 32
@@ -39,5 +39,6 @@ alignment = 1
 [node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=738038035]
 modulate = Color(0.90588236, 0.2784314, 0.2784314, 1)
 layout_mode = 2
-theme = ExtResource("3_yusch")
+size_flags_vertical = 1
+theme = ExtResource("2_tgujf")
 text = "Tag"

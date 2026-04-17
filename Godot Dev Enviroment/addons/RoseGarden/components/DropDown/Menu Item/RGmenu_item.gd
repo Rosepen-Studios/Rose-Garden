@@ -37,8 +37,11 @@ func _update():
 
 func _ready() -> void:
 	get_parent()._highlighted.connect(change_highlight)
-	_update()
 	RoseGarden.custom_textures_changed.connect(_update)
+	RoseGarden.custom_themes_changed.connect(_update_themes)
+	_update()
+	_update_themes()
+
 
 
 func _pressed() -> void:
@@ -51,7 +54,6 @@ func _on_mouse_entered() -> void:
 	_highlighted.emit(id)
 	_update()
 
-
 func _on_mouse_exited() -> void:
 	_update()
 
@@ -60,3 +62,6 @@ func change_highlight(new_id:int):
 		return
 	highlighted = false
 	_update()
+
+func _update_themes():
+	text.theme = RoseGarden.Themes.Secondary

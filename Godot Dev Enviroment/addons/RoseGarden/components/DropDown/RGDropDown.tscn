@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpjr3spdqv0wa" path="res://addons/RoseGarden/components/DropDown/RGDropDown.gd" id="1_vt2n3"]
 [ext_resource type="Texture2D" uid="uid://dvg823uea5hcf" path="res://addons/RoseGarden/components/DropDown/Container.svg" id="2_a1u6v"]
-[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://addons/RoseGarden/themes/Text/Secondary.tres" id="3_msi2a"]
+[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://addons/RoseGarden/themes/Secondary.tres" id="3_msi2a"]
 [ext_resource type="Texture2D" uid="uid://b6fn7iu8pyss2" path="res://addons/RoseGarden/components/DropDown/Arrow.svg" id="4_n88wu"]
 [ext_resource type="Texture2D" uid="uid://2gh1svsrklhp" path="res://addons/RoseGarden/components/DropDown/Selection.svg" id="4_qus3v"]
 [ext_resource type="Script" uid="uid://c4cf08m4jd2m" path="res://addons/RoseGarden/components/DropDown/RGmenu_item_container.gd" id="5_0tlgq"]

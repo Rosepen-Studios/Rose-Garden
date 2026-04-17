@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmdymajcng2jt"]
 
 [ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="1_6ffch"]
-[ext_resource type="Theme" uid="uid://cm47ywsogwem6" path="res://addons/RoseGarden/themes/Text/Main.tres" id="2_25o6v"]
+[ext_resource type="Theme" uid="uid://c05fdk6xb1vos" path="res://CustomThemes/Main.tres" id="2_25o6v"]
 
 [node name="RGText" type="Control" unique_id=85953319]
 custom_minimum_size = Vector2(43, 29)

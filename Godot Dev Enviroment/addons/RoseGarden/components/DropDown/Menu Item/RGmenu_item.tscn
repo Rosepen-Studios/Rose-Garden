@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://15wg606cu8b"]
 
-[ext_resource type="Script" uid="uid://cab1obn5ad302" path="res://RG/Drop Down/Menu Item/RGmenu_item.gd" id="1_t4vrt"]
-[ext_resource type="Texture2D" uid="uid://bilyukxa4t1hq" path="res://RG/Drop Down/Selected.svg" id="2_ho2we"]
-[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://Themes/Text/Secondary.tres" id="3_wjpqi"]
+[ext_resource type="Script" uid="uid://cab1obn5ad302" path="res://addons/RoseGarden/components/DropDown/Menu Item/RGmenu_item.gd" id="1_t4vrt"]
+[ext_resource type="Texture2D" uid="uid://bilyukxa4t1hq" path="res://addons/RoseGarden/components/DropDown/Selected.svg" id="2_ho2we"]
+[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://addons/RoseGarden/themes/Secondary.tres" id="3_wjpqi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y2v4p"]
 

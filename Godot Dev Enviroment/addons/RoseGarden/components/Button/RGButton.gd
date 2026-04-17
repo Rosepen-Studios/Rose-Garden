@@ -28,7 +28,7 @@ var _hovered:bool = false
 
 func set_color(new_color:String):
 	if !Engine.is_editor_hint():
-		if Colors.verify_color(new_color,true) != OK:
+		if RoseGarden.Colors.verify_color(new_color,true) != OK:
 			return ERR_INVALID_PARAMETER
 	color = new_color
 	match connection:
@@ -47,14 +47,17 @@ func set_color(new_color:String):
 		label.modulate = Color(1,1,1)
 		texture.modulate = Color(1,1,1)
 	_update()
+	return OK
 
 func set_icon(new_icon:Texture2D):
 	icon = new_icon
 	_update()
+	return OK
 
 func set_text(new_text:String):
 	text=new_text
 	_update()
+	return OK
 
 func get_color():
 	return color
@@ -68,8 +71,16 @@ func get_text():
 func is_hovered():
 	return _hovered
 
+func press():
+	if disabled:
+		return ERR_LOCKED
+	await _on_button_down()
+	_on_button_up()
+	pressed.emit()
+
+
 ##############
-#### STOP #### Here begin private function that should never be called by your code
+#### STOP #### Here begin private functions that should never be called by your code
 ##############
 
 func _process(_delta: float) -> void:
@@ -99,9 +110,9 @@ func _update():
 	base.size.x = text_container.size.x
 	_mirror_to_button()
 	if disabled:
-		modulate = Colors.COLOR_DISABLED
+		modulate = RoseGarden.Colors.COLOR_DISABLED
 	else:
-		modulate = Colors.COLOR_NORMAL
+		modulate = RoseGarden.Colors.COLOR_NORMAL
 	match connection:
 		"None","Both":
 			pivot_offset = size/2
@@ -114,6 +125,9 @@ func _ready() -> void:
 	set_color(color)
 	_update()
 	RoseGarden.custom_textures_changed.connect(_update_textures)
+	RoseGarden.custom_themes_changed.connect(_update_themes)
+	_update_textures()
+	_update_themes()
 
 func _mirror_to_button():
 	button.disabled = disabled
@@ -122,33 +136,39 @@ func _mirror_to_button():
 
 
 func _on_button_down() -> void:
+	var tween = create_tween()
 	if disabled:
 		pass
 	else:
-		modulate = Colors.COLOR_PRESSED
+		modulate = RoseGarden.Colors.COLOR_PRESSED
 	button_down.emit()
 	if RoseGarden.Accessibility.get_disable_animations():
 		return
 	if connection != "Both":
-		create_tween().tween_property(self,"scale",Vector2(0.95,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(self,"scale",Vector2(0.95,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
 	else:
-		create_tween().tween_property(self,"scale",Vector2(1,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(self,"scale",Vector2(1,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	return
 
 func _on_button_up() -> void:
+	var tween = create_tween()
 	if disabled:
 		if is_hovered():
-			modulate = Colors.COLOR_DISABLED_HOVERED
+			modulate = RoseGarden.Colors.COLOR_DISABLED_HOVERED
 		else:
-			modulate = Colors.COLOR_DISABLED
+			modulate = RoseGarden.Colors.COLOR_DISABLED
 	else:
 		if is_hovered():
-			modulate = Colors.COLOR_HOVERED
+			modulate = RoseGarden.Colors.COLOR_HOVERED
 		else:
-			modulate = Colors.COLOR_NORMAL
+			modulate = RoseGarden.Colors.COLOR_NORMAL
 	button_up.emit()
 	if RoseGarden.Accessibility.get_disable_animations():
 		return
-	create_tween().tween_property(self,"scale",Vector2(1,1),0.1).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,"scale",Vector2(1,1),0.1).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	return
 
 func _on_pressed() -> void:
 	pressed.emit()
@@ -159,16 +179,16 @@ func _on_toggled(toggled_on: bool) -> void:
 func _on_mouse_entered() -> void:
 	_hovered = true
 	if disabled:
-		modulate = Colors.COLOR_DISABLED_HOVERED
+		modulate = RoseGarden.Colors.COLOR_DISABLED_HOVERED
 	else:
-		modulate = Colors.COLOR_HOVERED
+		modulate = RoseGarden.Colors.COLOR_HOVERED
 
 func _on_mouse_exited() -> void:
 	_hovered = false
 	if disabled:
-		modulate = Colors.COLOR_DISABLED
+		modulate = RoseGarden.Colors.COLOR_DISABLED
 	else:
-		modulate = Colors.COLOR_NORMAL
+		modulate = RoseGarden.Colors.COLOR_NORMAL
 
 func _update_textures():
 	match connection:
@@ -180,3 +200,6 @@ func _update_textures():
 			base.texture = load(RoseGarden._get_file_path()+"Button/BaseRight/Base"+color+".svg")
 		"Both":
 			base.texture = load(RoseGarden._get_file_path()+"Button/BaseBoth/Base"+color+".svg")
+
+func _update_themes():
+	label.theme = load(RoseGarden._theme_path+"Secondary.tres")

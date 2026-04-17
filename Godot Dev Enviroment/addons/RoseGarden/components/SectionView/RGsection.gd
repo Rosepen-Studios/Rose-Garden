@@ -1,7 +1,7 @@
 extends NinePatchRect
 
 ##############
-#### STOP #### Here begin private function that should never be called by your code
+#### STOP #### This is a support script for RGSectionView, it should not be used by your code directly
 ##############
 
 var id:int

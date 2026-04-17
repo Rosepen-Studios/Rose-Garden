@@ -1,6 +1,12 @@
 @tool
 extends Node
 
+func _ready() -> void:
+	custom_themes_changed.connect(Themes._update_themes)
+	await get_tree().create_timer(0.1).timeout
+	custom_themes_changed.emit()
+	enable_custom_themes("res://CustomThemes")
+
 #Accessibility
 class Accessibility:
 	static var disableAnimations:bool = false
@@ -19,7 +25,7 @@ class Accessibility:
 		return increaseContrast
 
 #Colors
-class CustomColors:
+class Colors:
 	const GRAY_HIGHLIGHT = Color("414141")
 	const WHITE_HIGHLIGHT = Color("DADADA")
 	const RED_HIGHLIGHT = Color("E74747")
@@ -68,7 +74,7 @@ class CustomColors:
 					return Error.ERR_INVALID_PARAMETER
 
 #Icons
-class CustomIcons:
+class Icons:
 	const icons_path = "res://addons/RoseGarden/icons/"
 
 	const HOME = preload(icons_path+"/Home.svg")
@@ -80,6 +86,8 @@ class CustomIcons:
 	const SCISSORS = preload(icons_path+"/Scissors.svg")
 	const UP = preload(icons_path+"/Up.svg")
 	const DOWN = preload(icons_path+"/DOWN.svg")
+	const LOCK = preload(icons_path+"/Lock.svg")
+	const SEARCH = preload(icons_path+"/Search.svg")
 
 	static func get_icon(icon_name:String):
 		if !FileAccess.file_exists(icons_path+icon_name+".svg"):
@@ -92,17 +100,76 @@ var customTexturePath:String = ""
 var _file_path:String = "res://addons/RoseGarden/components/"
 signal custom_textures_changed
 
-func set_use_custom_textures(value:bool):
-	useCustomTextures = value
-
 func set_custom_texture_path(path:String):
 	if !FileAccess.file_exists(path):
 		push_error("RoseGarden: The provided custom texture path does not exist.")
 		return
 	customTexturePath = path
 	_file_path = path+"/"
+
 func _get_file_path():
 	return _file_path
+
+func disable_custom_textures():
+	useCustomTextures = false
+	customTexturePath = ""
+	_file_path = "res://addons/RoseGarden/components/"
+	custom_textures_changed.emit()
+
+func enable_custom_textures(file_path:String):
+	useCustomTextures = true
+	if !FileAccess.file_exists(file_path):
+		push_error("RoseGarden: The provided custom texture path does not exist.")
+	customTexturePath = file_path+"/"
+	custom_textures_changed.emit()
+
+#Fonts Themes
+var useCustomThemes:bool = false
+var customThemePath:String = ""
+signal custom_themes_changed
+var _theme_path:String = "res://addons/RoseGarden/themes/"
+
+func set_use_custom_themes(value:bool):
+	useCustomThemes = value
+
+func set_custom_theme_path(file_path:String):
+	if !FileAccess.file_exists(file_path):
+		push_error("RoseGarden: The provided custom theme path does not exist.")
+	customThemePath = file_path
+	_theme_path = file_path+"/"
+	custom_themes_changed.emit()
+
+func enable_custom_themes(theme_path:String):
+	useCustomThemes = true
+	if !FileAccess.file_exists(theme_path):
+		push_error("RoseGarden: The provided custom theme path does not exist.")
+	customThemePath = theme_path
+	_theme_path = theme_path+"/"
+	custom_themes_changed.emit()
+
+func disable_custom_themes():
+	useCustomThemes = false
+	customThemePath = ""
+	_theme_path = "res://addons/RoseGarden/themes/"
+	custom_themes_changed.emit()
+
+func _get_theme_path():
+	return _theme_path
+
+class Themes:
+	static var Main = load("res://addons/RoseGarden/themes/Main.tres")
+	static var Secondary = load("res://addons/RoseGarden/themes/Secondary.tres")
+	static var Large = load("res://addons/RoseGarden/themes/Large.tres")
+	static var Info = load("res://addons/RoseGarden/themes/Info.tres")
+	static var FinePrint = load("res://addons/RoseGarden/themes/FinePrint.tres")
+
+	static func _update_themes():
+		Main = load(RoseGarden._theme_path+"Main.tres")
+		Secondary = load(RoseGarden._theme_path+"Secondary.tres")
+		Large = load(RoseGarden._theme_path+"Large.tres")
+		Info = load(RoseGarden._theme_path+"Info.tres")
+		FinePrint = load(RoseGarden._theme_path+"FinePrint.tres")
+
 #Right Click Menu Functions
 var menu_layer:CanvasLayer
 var submenu:RGRighClickMenu
@@ -125,15 +192,14 @@ func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 		await menu.add_item(item)
 
 	if target_position.y+menu.size.y>DisplayServer.window_get_size().y:
-		position.y = DisplayServer.window_get_size().y-menu.size.y-16
+		position.y = target_position.y-menu.size.y
+		menu.pivot_offset.y = menu.size.y
 	if target_position.x +menu.size.x>DisplayServer.window_get_size().x:
 		position.x = target_position.x-menu.size.x
 		menu.pivot_offset.x = menu.size.x
 	menu.position = position
 	menu._custom_ready()
 	return OK
-
-
 
 func _create_rc_submenu(menu_layout:RGmenu,target_position:Vector2):
 	if menu_layer == null:
@@ -151,7 +217,7 @@ func _create_rc_submenu(menu_layout:RGmenu,target_position:Vector2):
 	if target_position.y+submenu.size.y>DisplayServer.window_get_size().y:
 		position.y = DisplayServer.window_get_size().y-submenu.size.y-16
 	if target_position.x +submenu.size.x>DisplayServer.window_get_size().x:
-		position.x = target_position.x-submenu.size.x*2
+		position.x = target_position.x-submenu.size.x*2 +4
 		submenu.pivot_offset.x = submenu.size.x
 	submenu.position = position
 	submenu._custom_ready()

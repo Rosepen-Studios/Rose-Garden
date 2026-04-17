@@ -3,8 +3,6 @@ extends EditorPlugin
 
 const AUTOLOADS = {
 	"RoseGarden": "res://addons/RoseGarden/globals/RoseGarden.gd",
-	"Icons": "res://addons/RoseGarden/globals/Icons.gd",
-	"Colors": "res://addons/RoseGarden/globals/Colors.gd",
 }
 
 const DialogScene = preload("res://addons/RoseGarden/editor/RGcomponent_dialogue.tscn")
@@ -27,7 +25,7 @@ func _enter_tree() -> void:
 	_toolbar_button = Button.new()
 	_toolbar_button.name = "AddRoseGardenComponent"
 	_toolbar_button.text = ""
-	_toolbar_button.icon = load("res://addons/RoseGarden/Icon"+str(randi_range(1,3))+".svg")
+	_toolbar_button.icon = load("res://addons/RoseGarden/IconColors/Icon"+str(randi_range(1,3))+".svg")
 	_toolbar_button.tooltip_text = "Add Rose Garden Component"
 	_dialog.hide()
 
@@ -73,7 +71,7 @@ func _exit_tree() -> void:
 
 
 func _on_toolbar_button_pressed() -> void:
-	_toolbar_button.icon = load("res://addons/RoseGarden/Icon"+str(randi_range(1,3))+".svg")
+	_toolbar_button.icon = load("res://addons/RoseGarden/IconColors/Icon"+str(randi_range(1,3))+".svg")
 	_dialog.popup_centered()
 	_dialog.search.select_all()
 	_dialog.list.select(0)

@@ -18,13 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 RoseGarden="*uid://hnivujajew1k"
-Icons="*uid://dqt20ki8r1q68"
-Colors="*uid://bbqa440wcdmu1"
 
 [display]
 
 window/size/viewport_width=1964
-window/size/viewport_height=1336
+window/size/viewport_height=1786
 window/size/resizable=false
 
 [editor_plugins]

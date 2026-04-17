@@ -61,11 +61,14 @@ func get_selected_item():
 	return items[_find_index(item_ids,selected)]
 
 ##############
-#### STOP #### Here begin private function that should never be called by your code
+#### STOP #### Here begin private functions that should never be called by your code
 ##############
 ##
 func _ready() -> void:
 	RoseGarden.custom_textures_changed.connect(_update_textures)
+	RoseGarden.custom_themes_changed.connect(_update_themes)
+	_update_textures()
+	_update_themes()
 
 func _update():
 	if !Engine.is_editor_hint():
@@ -134,22 +137,25 @@ func _on_focus_exited() -> void:
 
 
 func _on_mouse_entered() -> void:
-	modulate = Colors.COLOR_HOVERED
+	modulate = RoseGarden.Colors.COLOR_HOVERED
 
 
 func _on_mouse_exited() -> void:
-	modulate = Colors.COLOR_NORMAL
+	modulate = RoseGarden.Colors.COLOR_NORMAL
 
 
 func _on_button_up() -> void:
-	modulate = Colors.COLOR_HOVERED
+	modulate = RoseGarden.Colors.COLOR_HOVERED
 
 
 func _on_button_down() -> void:
-	modulate = Colors.COLOR_PRESSED
+	modulate = RoseGarden.Colors.COLOR_PRESSED
 
 func _update_textures():
 	container.texture = load(RoseGarden._file_path+"DropDown/Container.svg")
 	arrow.texture = load(RoseGarden._file_path+"DropDown/Arrow.svg")
 	menu_container.texture = load(RoseGarden._file_path+"DropDown/Container.svg")
 	selection.texture = load(RoseGarden._file_path+"DropDown/Selection.svg")
+
+func _update_themes():
+	label.theme = RoseGarden.Themes.Secondary

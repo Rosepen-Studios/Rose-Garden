@@ -6,10 +6,10 @@ signal component_selected(scene_path: String)
 
 const COMPONENTS_ROOT = "res://addons/RoseGarden/components/"
 
-@onready var search: LineEdit     = $Background/MarginContainer/VBoxContainer/LineEdit
-@onready var list:   ItemList     = $Background/MarginContainer/VBoxContainer/ItemList
-@onready var btn_add: Button      = $Background/MarginContainer/VBoxContainer/HBoxContainer/ButtonAdd
-@onready var btn_cancel: Button   = $Background/MarginContainer/VBoxContainer/HBoxContainer/ButtonCancel
+@onready var search: LineEdit = $Background/MarginContainer/VBoxContainer/LineEdit
+@onready var list: ItemList = $Background/MarginContainer/VBoxContainer/ItemList
+@onready var btn_add: Button = $Background/MarginContainer/VBoxContainer/HBoxContainer/ButtonAdd
+@onready var btn_cancel: Button	= $Background/MarginContainer/VBoxContainer/HBoxContainer/ButtonCancel
 @onready var background: TextureRect = $Background
 @onready var description: RichTextLabel = $Background/MarginContainer/VBoxContainer/RichTextLabel
 

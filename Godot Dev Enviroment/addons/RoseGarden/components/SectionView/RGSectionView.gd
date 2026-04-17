@@ -57,7 +57,7 @@ func get_sections():
 	return _sections
 
 ##############
-#### STOP #### Here begin private function that should never be called by your code
+#### STOP #### Here begin private functions that should never be called by your code
 ##############
 
 func _ready() -> void:

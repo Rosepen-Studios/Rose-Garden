@@ -6,7 +6,7 @@ class_name RGText
 
 @export_category("Appearence")
 @export var text:String = "Text"
-@export_enum("Main","Secondary","Info","FinePrint") var font_size = "Main"
+@export_enum("Large","Main","Secondary","Info","FinePrint") var font_size = "Main"
 @export var rounded:bool = false
 @export_enum("Main","Secondary","Dark","Custom") var color = "Main"
 @export var custom_color:Color = Color(1,1,1)
@@ -44,10 +44,11 @@ func set_text(new_text:String):
 ##############
 
 func _ready():
+	RoseGarden.custom_themes_changed.connect(_update)
 	_update()
 
 func _update():
-	var theme_path = "res://addons/RoseGarden/themes/Text/"+font_size
+	var theme_path = str(RoseGarden._theme_path)+font_size
 	if rounded:
 		theme_path += "Round.tres"
 	else:
@@ -55,11 +56,11 @@ func _update():
 	label.theme = load(theme_path)
 	match color:
 		"Main":
-			label.add_theme_color_override("font_color",RoseGarden.CustomColors.TEXT_MAIN)
+			label.add_theme_color_override("font_color",RoseGarden.Colors.TEXT_MAIN)
 		"Secondary":
-			label.add_theme_color_override("font_color",RoseGarden.CustomColors.TEXT_SECONDARY)
+			label.add_theme_color_override("font_color",RoseGarden.Colors.TEXT_SECONDARY)
 		"Dark":
-			label.add_theme_color_override("font_color",RoseGarden.CustomColors.TEXT_DARK)
+			label.add_theme_color_override("font_color",RoseGarden.Colors.TEXT_DARK)
 		"Custom":
 			label.add_theme_color_override("font_color",custom_color)
 	label.text = text

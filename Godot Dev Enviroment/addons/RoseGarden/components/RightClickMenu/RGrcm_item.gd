@@ -16,6 +16,10 @@ var manager:RGRighClickMenu
 
 func _ready() -> void:
 	RoseGarden.custom_textures_changed.connect(update)
+	RoseGarden.custom_themes_changed.connect(_update_textures)
+	update()
+	_update_textures()
+
 func update():
 	title_label.text = title
 	icon_container.texture = icon
@@ -53,3 +57,6 @@ func _on_button_pressed() -> void:
 
 func _on_button_mouse_exited() -> void:
 	manager.selection.visible = false
+
+func _update_textures():
+	title_label.theme = RoseGarden.Themes.Main

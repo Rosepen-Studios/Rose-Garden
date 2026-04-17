@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c247fa4u6vknm"]
 
-[ext_resource type="Script" uid="uid://ca4r05wiqal08" path="res://addons/RoseGarden/components/SegmentControl.gd" id="1_hogpa"]
-[ext_resource type="Texture2D" uid="uid://btwhtoevk81fo" path="res://addons/RoseGarden/components/SegmentControl/Container.svg" id="2_hogpa"]
+[ext_resource type="Script" uid="uid://ca4r05wiqal08" path="res://addons/RoseGarden/components/SegmentControl/RGSegmentControl.gd" id="1_hogpa"]
+[ext_resource type="Texture2D" uid="uid://btwhtoevk81fo" path="res://addons/RoseGarden/components/SegmentControlIcon/Container.svg" id="2_hogpa"]
 [ext_resource type="Texture2D" uid="uid://buml8wu0eqxal" path="res://addons/RoseGarden/components/SegmentControl/Selection.svg" id="3_fs17p"]
 
 [node name="RGSegmentControl" type="Control" unique_id=973767052]
@@ -58,7 +58,7 @@ theme_override_constants/separation = 8
 [node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=412220991]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

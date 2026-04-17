@@ -63,7 +63,7 @@ func remove_item(item_name:String):
 	return OK
 
 ##############
-#### STOP #### Here begin private function that should never be called by your code
+#### STOP #### Here begin private functions that should never be called by your code
 ##############
 
 func _process(_delta: float) -> void:
