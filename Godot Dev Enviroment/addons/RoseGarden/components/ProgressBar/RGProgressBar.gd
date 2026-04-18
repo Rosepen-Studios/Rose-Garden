@@ -36,7 +36,7 @@ func get_color():
 
 func tween_value(new_value:float, duration:float,trans := Tween.TRANS_SINE):
 	var tween = create_tween()
-	tween.tween_property(self, "value", new_value, duration).set_trans(trans)
+	tween.tween_property(self, "value", new_value, duration*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(trans)
 	if new_value < 0 or new_value > 100:
 		return ERR_INVALID_PARAMETER
 	return OK

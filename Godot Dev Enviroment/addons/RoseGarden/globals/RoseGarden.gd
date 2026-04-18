@@ -26,6 +26,7 @@ class Accessibility:
 
 #Colors
 class Colors:
+
 	const GRAY_HIGHLIGHT = Color("414141")
 	const WHITE_HIGHLIGHT = Color("DADADA")
 	const RED_HIGHLIGHT = Color("E74747")
@@ -58,21 +59,38 @@ class Colors:
 	const TEXT_SECONDARY = Color("ACACAC")
 	const TEXT_DARK = Color("0A0A0A")
 
+	static var _color_dic = {
+		"Gray":Color("1D1D1D"),
+		"White":Color("FDFDFD"),
+		"Red":Color("D72D2C"),
+		"Orange":Color("F7821C"),
+		"Yellow":Color("FBC600"),
+		"Green":Color("2AD62E"),
+		"Teal":Color("49DAC9"),
+		"Blue":Color("3993EC"),
+		"Pink":Color("F167AE"),
+		"Purple":Color("7A3FE7")
+	}
+
 	static func verify_color(color:String,use_easter_eggs:bool=false):
 		if !use_easter_eggs:
 			match color:
-				GRAY,WHITE,RED,ORANGE,YELLOW,GREEN,TEAL,BLUE,PINK,PURPLE:
+				"Gray","White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple":
 					return OK
 				_:
 					return Error.ERR_INVALID_PARAMETER
 
 		else:
 			match color:
-				GRAY,WHITE,RED,ORANGE,YELLOW,GREEN,TEAL,BLUE,PINK,PURPLE,"Tasker":
+				"Gray","White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple","Tasker":
 					return OK
 				_:
 					return Error.ERR_INVALID_PARAMETER
 
+	static func get_color(color:String):
+		if !verify_color(color) == OK:
+			return ERR_INVALID_PARAMETER
+		return _color_dic[color]
 #Icons
 class Icons:
 	const icons_path = "res://addons/RoseGarden/icons/"
@@ -93,6 +111,21 @@ class Icons:
 		if !FileAccess.file_exists(icons_path+icon_name+".svg"):
 			return ERR_DOES_NOT_EXIST
 		return load(icons_path+icon_name+".svg")
+
+#Themes
+class Themes:
+	static var Main = load("res://addons/RoseGarden/themes/Main.tres")
+	static var Secondary = load("res://addons/RoseGarden/themes/Secondary.tres")
+	static var Large = load("res://addons/RoseGarden/themes/Large.tres")
+	static var Info = load("res://addons/RoseGarden/themes/Info.tres")
+	static var FinePrint = load("res://addons/RoseGarden/themes/FinePrint.tres")
+
+	static func _update_themes():
+		Main = load(RoseGarden._theme_path+"Main.tres")
+		Secondary = load(RoseGarden._theme_path+"Secondary.tres")
+		Large = load(RoseGarden._theme_path+"Large.tres")
+		Info = load(RoseGarden._theme_path+"Info.tres")
+		FinePrint = load(RoseGarden._theme_path+"FinePrint.tres")
 
 #Custom Textures
 var useCustomTextures:bool = false
@@ -156,19 +189,6 @@ func disable_custom_themes():
 func _get_theme_path():
 	return _theme_path
 
-class Themes:
-	static var Main = load("res://addons/RoseGarden/themes/Main.tres")
-	static var Secondary = load("res://addons/RoseGarden/themes/Secondary.tres")
-	static var Large = load("res://addons/RoseGarden/themes/Large.tres")
-	static var Info = load("res://addons/RoseGarden/themes/Info.tres")
-	static var FinePrint = load("res://addons/RoseGarden/themes/FinePrint.tres")
-
-	static func _update_themes():
-		Main = load(RoseGarden._theme_path+"Main.tres")
-		Secondary = load(RoseGarden._theme_path+"Secondary.tres")
-		Large = load(RoseGarden._theme_path+"Large.tres")
-		Info = load(RoseGarden._theme_path+"Info.tres")
-		FinePrint = load(RoseGarden._theme_path+"FinePrint.tres")
 
 #Right Click Menu Functions
 var menu_layer:CanvasLayer

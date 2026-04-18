@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://be2evf4sisoi3" path="res://addons/RoseGarden/icons/Previous.svg" id="16_afd3e"]
 [ext_resource type="Texture2D" uid="uid://dvif5ky5o2blw" path="res://addons/RoseGarden/icons/Next.svg" id="17_1o0f2"]
 [ext_resource type="PackedScene" uid="uid://n26v0vu3820g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.tscn" id="17_axbo8"]
-[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="18_afd3e"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="19_afd3e"]
 [ext_resource type="PackedScene" uid="uid://yemav5jwqvo8" path="res://addons/RoseGarden/components/Tag/RGTag.tscn" id="20_eoelk"]
 
@@ -545,10 +544,9 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" type="Control" parent="MarginContainer/VBoxContainer/RightClickMenu" unique_id=1070846224 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/RightClickMenu" unique_id=1070846224 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(176, 29)
 layout_mode = 2
-script = ExtResource("18_afd3e")
 text = "Right Click Menu"
 
 [node name="Right Click Menu" parent="MarginContainer/VBoxContainer/RightClickMenu" unique_id=535912435 instance=ExtResource("19_afd3e")]
