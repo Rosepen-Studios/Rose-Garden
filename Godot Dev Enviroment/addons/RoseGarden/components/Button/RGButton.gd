@@ -147,7 +147,7 @@ func _on_button_down() -> void:
 	if connection != "Both":
 		tween.tween_property(self,"scale",Vector2(0.95,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
 	else:
-		tween.tween_property(self,"scale",Vector2(1,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(self,"scale",Vector2(1,0.9),0.1).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	return
 

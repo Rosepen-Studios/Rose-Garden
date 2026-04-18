@@ -77,7 +77,7 @@ func _update():
 		hint_container.visible = false
 
 	if incorrect:
-		label.modulate = RoseGarden.CustomIColors.RED_HIGHLIGHT
+		label.modulate = RoseGarden.Colors.RED_HIGHLIGHT
 		mask.texture = preload("res://addons/RoseGarden/components/TextField/MaskIncorrect.png")
 		container.texture = preload("res://addons/RoseGarden/components/TextField/ContainerIncorrect.svg")
 	else:

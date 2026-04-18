@@ -13,7 +13,8 @@ config_version=5
 config/name="Rose Garden"
 run/main_scene="uid://dm5x5yx0k5n1i"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cugq8fwwaim5a"
+config/macos_native_icon="res://Icon.icns"
 
 [autoload]
 

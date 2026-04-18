@@ -333,6 +333,7 @@ vertical_alignment = "Center"
 custom_minimum_size = Vector2(256, 60)
 layout_mode = 2
 placeholder_text = "Enter password"
+secret = true
 
 [node name="RGText3" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer" unique_id=25960398 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(35, 25)

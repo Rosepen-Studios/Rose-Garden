@@ -55,6 +55,8 @@ func _on_mouse_entered() -> void:
 	_update()
 
 func _on_mouse_exited() -> void:
+	manager.selection.visible = false
+	highlighted = false
 	_update()
 
 func change_highlight(new_id:int):

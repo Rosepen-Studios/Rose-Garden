@@ -5,7 +5,7 @@ extends NinePatchRect
 ##############
 
 var id:int
-var manager:RGSectionView
+var manager
 
 
 func _ready() -> void:

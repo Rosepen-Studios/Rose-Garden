@@ -127,6 +127,7 @@ func _new_menu_item(node: Node) -> void:
 	_update()
 
 func _on_menu_item_highlighted(id: int) -> void:
+	selection.visible = true
 	create_tween().tween_property(selection,"position",Vector2(selection.position.x,52*_find_index(item_ids,id)),0.09*int(not(RoseGarden.Accessibility.get_disable_animations() or instant_selection))).set_trans(Tween.TRANS_SPRING)
 
 

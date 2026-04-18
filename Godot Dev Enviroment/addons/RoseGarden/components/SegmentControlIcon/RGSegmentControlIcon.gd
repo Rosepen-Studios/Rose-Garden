@@ -17,8 +17,7 @@ func select(item_name:String):
 
 	selected = item_name
 	var index = _find_index(items,item_name)
-	get_tree().create_tween().tween_property(selector,"position",Vector2(56*index,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
-	_shade_options()
+	get_tree().create_tween().tween_property(selector,"position",Vector2(56*index,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	return OK
 
 func add_item(item_name:String,item_icon:Texture2D) -> int:
