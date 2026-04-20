@@ -3,13 +3,16 @@ extends Control
 class_name RGSegmentControl
 @onready var texture: NinePatchRect = $NinePatchRect
 @onready var text_container: HBoxContainer = $MarginContainer/HBoxContainer
-@onready var button_container: HBoxContainer = $ButtonContainer
 @onready var selector: NinePatchRect = $MarginContainer/Control/Selector
 var items:Array = []
 var items_text:Dictionary[String, String]
 var refresh:bool = false
 var selected:String
 var _hovered:String = ""
+
+signal item_selected(item_name:String)
+signal item_added(item_name:String)
+signal item_removed(item_name:String)
 
 func add_item(item_name:String,item_text:String) -> int:
 	if _array_has_item(items,item_name):
@@ -21,19 +24,20 @@ func add_item(item_name:String,item_text:String) -> int:
 	target.text = "  "+item_text+"  "
 	target.theme = RoseGarden.Themes.Secondary
 	items_text[item_name] = item_text
-
-	button_container.add_child(Button.new())
-	var target2:Button = button_container.get_children()[button_container.get_children().size() - 1]
+	
+	target.add_child(Button.new())
+	var target2:Button = target.get_child(0)
 	target2.set_script(load("res://addons/RoseGarden/components/SegmentControl/RGsc_button.gd"))
 	target2.flat = true
 	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
 	target2.item = item_name
-	target2.custom_minimum_size = Vector2(target.size.x,60)
+	target2.size = target.size
 	target2._ready()
 	if selected == "":
 		select(item_name)
 	_update()
 	_shade_options()
+	item_added.emit(item_name)
 	return OK
 
 func remove_item(item_name:String):
@@ -44,13 +48,14 @@ func remove_item(item_name:String):
 
 	items.remove_at(_find_index(items,item_name))
 	items_text.erase(item_name)
-	for child in button_container.get_children().size()-1:
-		if button_container.get_child(child).item == item_name:
-			button_container.get_child(child).queue_free()
+	for child in text_container.get_children().size()-1:
+		if text_container.get_child(child).get_child(0).item == item_name:
+			text_container.get_child(child).get_child(0).queue_free()
 			text_container.get_child(child).queue_free()
 			break
 	_update()
 	_shade_options()
+	item_removed.emit(item_name)
 	return OK
 
 func select(item:String):
@@ -68,6 +73,19 @@ func select(item:String):
 	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_options()
+	item_selected.emit(item)
+	return OK
+
+func select_next():
+	if selected == items[items.size()-1]:
+		return ERR_DOES_NOT_EXIST
+	select(items[_find_index(items,selected)+1])
+	return OK
+
+func select_prev():
+	if selected == items[0]:
+		return ERR_DOES_NOT_EXIST
+	select(items[_find_index(items,selected)-1])
 	return OK
 
 ##############
@@ -92,14 +110,12 @@ func _ready() -> void:
 func _update():
 	var container_size = text_container.get_parent().size.x
 	texture.size.x = container_size
-	button_container.size.x = container_size
 	custom_minimum_size.x = texture.size.x
 
 func _delayed_update():
 	await get_tree().create_timer(2).timeout
 	var container_size = text_container.get_parent().size.x
 	texture.size.x = container_size
-	button_container.size.x = container_size
 
 func _display_item(item_name:String,item_text:String) -> int:
 	text_container.add_child(Label.new())
@@ -108,18 +124,8 @@ func _display_item(item_name:String,item_text:String) -> int:
 	target.theme = load("res://addons/RoseGarden/themes/Text/Secondary.tres")
 	items_text[item_name] = item_text
 
-	button_container.add_child(Button.new())
-	var target2:Button = button_container.get_children()[button_container.get_children().size() - 1]
-	target2.set_script(load("res://addons/RoseGarden/components/SegmentControl/Button.gd"))
-	target2.flat = true
-	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
-	target2.item = item_name
-	target2.custom_minimum_size = Vector2(target.size.x,60)
-	target2._ready()
 	_delayed_update()
 	return OK
-
-
 
 func _array_has_item(array:Array,item):
 	var found := false
@@ -136,15 +142,12 @@ func _find_index(array:Array,item):
 			index = i
 	return index
 
-
 func _load_items():
 	for item in items:
 		_display_item(item,items_text[item])
 
 func _erase_items():
 	for child in text_container.get_children():
-		child.queue_free()
-	for child in button_container.get_children():
 		child.queue_free()
 
 func _build_size_array():

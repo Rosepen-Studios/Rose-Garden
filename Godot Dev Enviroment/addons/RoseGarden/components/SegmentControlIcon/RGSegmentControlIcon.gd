@@ -3,13 +3,16 @@ extends Control
 class_name RGSegmentControlIcon
 @onready var texture: NinePatchRect = $NinePatchRect
 @onready var icon_container: HBoxContainer = $MarginContainer/HBoxContainer
-@onready var button_container: HBoxContainer = $ButtonContainer
 @onready var selector: TextureRect = $MarginContainer/Control/Selector
 var refresh:bool = false
 var items:Array = []
 var item_icons:Dictionary[String, Texture2D]
 var selected:String
 var _hovered:String = ""
+
+signal item_selected(item_name:String)
+signal item_added(item_name:String)
+signal item_removed(item_name:String)
 
 func select(item_name:String):
 	if !_array_has_item(items,item_name):
@@ -18,6 +21,7 @@ func select(item_name:String):
 	selected = item_name
 	var index = _find_index(items,item_name)
 	get_tree().create_tween().tween_property(selector,"position",Vector2(56*index,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	item_selected.emit(item_name)
 	return OK
 
 func add_item(item_name:String,item_icon:Texture2D) -> int:
@@ -30,18 +34,19 @@ func add_item(item_name:String,item_icon:Texture2D) -> int:
 	target.texture = item_icon
 	item_icons[item_name] = item_icon
 
-	button_container.add_child(Button.new())
-	var target2:Button = button_container.get_children()[button_container.get_children().size() - 1]
+	target.add_child(Button.new())
+	var target2:Button = target.get_child(0)
 	target2.set_script(preload("res://addons/RoseGarden/components/SegmentControl/RGsc_button.gd"))
 	target2.flat = true
 	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
 	target2.item = item_name
-	target2.custom_minimum_size = Vector2(60,60)
+	target2.size = Vector2(60,60)
 	target2._ready()
 	if selected == "":
 		select(item_name)
 	_update()
 	_shade_options()
+	item_added.emit(item_name)
 	return OK
 
 func remove_item(item_name:String):
@@ -52,13 +57,26 @@ func remove_item(item_name:String):
 
 	items.remove_at(_find_index(items,item_name))
 	item_icons.erase(item_name)
-	for child in button_container.get_children().size()-1:
-		if button_container.get_child(child).item == item_name:
-			button_container.get_child(child).queue_free()
+	for child in icon_container.get_children().size()-1:
+		if icon_container.get_child(child).get_child(0).item == item_name:
+			icon_container.get_child(child).get_child(0).queue_free()
 			icon_container.get_child(child).queue_free()
 			break
 	_update()
 	_shade_options()
+	item_removed.emit(item_name)
+	return OK
+
+func select_next():
+	if selected == items[items.size()-1]:
+		return ERR_DOES_NOT_EXIST
+	select(items[_find_index(items,selected)+1])
+	return OK
+
+func select_prev():
+	if selected == items[0]:
+		return ERR_DOES_NOT_EXIST
+	select(items[_find_index(items,selected)-1])
 	return OK
 
 ##############
@@ -83,14 +101,12 @@ func _ready() -> void:
 func _update():
 	var container_size = icon_container.get_parent().size.x
 	texture.size.x = container_size
-	button_container.size.x = container_size
 	custom_minimum_size.x = texture.size.x
 
 func _delayed_update():
 	await get_tree().create_timer(2).timeout
 	var container_size = icon_container.get_parent().size.x
 	texture.size.x = container_size
-	button_container.size.x = container_size
 
 
 func _display_item(item_name:String,item_icon:Texture2D) -> int:
@@ -99,14 +115,6 @@ func _display_item(item_name:String,item_icon:Texture2D) -> int:
 	target.texture = item_icon
 	item_icons[item_name] = item_icon
 
-	button_container.add_child(Button.new())
-	var target2:Button = button_container.get_children()[button_container.get_children().size() - 1]
-	target2.set_script(load("res://addons/RoseGarden/components/SegmentControl/Button.gd"))
-	target2.flat = true
-	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
-	target2.item = item_name
-	target2.custom_minimum_size = Vector2(60,60)
-	target2._ready()
 	_delayed_update()
 	return OK
 
@@ -133,8 +141,6 @@ func _load_items():
 
 func _erase_items():
 	for child in icon_container.get_children():
-		child.queue_free()
-	for child in button_container.get_children():
 		child.queue_free()
 
 func _shade_options():

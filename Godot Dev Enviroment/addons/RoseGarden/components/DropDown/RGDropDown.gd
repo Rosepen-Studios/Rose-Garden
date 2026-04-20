@@ -31,8 +31,10 @@ func add_item(item_name:String,item_id:int):
 	target.option_name = item_name
 	target._ready()
 	_update()
+	menu_container.modulate = Color(1,1,1,0)
 	_open()
-	_close()
+	_close(true)
+	menu_container.modulate = Color(1,1,1,1)
 	return OK
 
 func remove_item(item_id:int):
@@ -44,6 +46,7 @@ func remove_item(item_id:int):
 		if child.id == item_id:
 			child.queue_free()
 	_update()
+	selection.position.y = 0
 	return OK
 
 func select(item_id:int):
@@ -111,11 +114,11 @@ func _open():
 	selection.visible = true
 	opened.emit()
 
-func _close():
+func _close(invisible:bool=false):
 	var tween = create_tween()
 	selection.visible = false
 	tween.tween_property(menu_container,"size",size,0.07*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
-	await get_tree().create_timer(0.07).timeout
+	await get_tree().create_timer(0.07*int(!invisible)).timeout
 	menu_container.visible=false
 	closed.emit()
 

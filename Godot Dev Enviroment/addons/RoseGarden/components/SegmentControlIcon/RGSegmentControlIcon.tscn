@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bspdiaf7ktvjm"]
 
-[ext_resource type="Script" uid="uid://cvx4gv75pdncd" path="res://addons/RoseGarden/components/Segment Control/Icon/RGSegmentControlIcon.gd" id="1_nd2cy"]
-[ext_resource type="Texture2D" uid="uid://btwhtoevk81fo" path="res://addons/RoseGarden/components/Segment Control/Container.svg" id="2_n88eo"]
-[ext_resource type="Texture2D" uid="uid://dn3f601pkm6rt" path="res://addons/RoseGarden/components/Segment Control/Icon/Selection.svg" id="3_nd2cy"]
+[ext_resource type="Script" uid="uid://cvx4gv75pdncd" path="res://addons/RoseGarden/components/SegmentControlIcon/RGSegmentControlIcon.gd" id="1_nd2cy"]
+[ext_resource type="Texture2D" uid="uid://btwhtoevk81fo" path="res://addons/RoseGarden/components/SegmentControlIcon/Container.svg" id="2_n88eo"]
+[ext_resource type="Texture2D" uid="uid://dn3f601pkm6rt" path="res://addons/RoseGarden/components/SegmentControlIcon/Selection.svg" id="3_nd2cy"]
 
 [node name="RGSegmentControlIcon" type="Control" unique_id=1133264568]
 custom_minimum_size = Vector2(60, 30)
@@ -47,11 +47,3 @@ stretch_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2050243895]
 layout_mode = 2
 theme_override_constants/separation = 8
-
-[node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=1992651419]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 60.0
-theme_override_constants/separation = 0
-alignment = 1

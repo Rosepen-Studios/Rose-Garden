@@ -67,9 +67,9 @@ func _update():
 		text_container.layout_direction = Control.LAYOUT_DIRECTION_INHERITED
 
 	if line_edit.has_focus():
-		create_tween().tween_property(hint_container,"modulate",Color(0,0,0,0),0.1).set_trans(Tween.TRANS_BOUNCE)
+		create_tween().tween_property(hint_container,"modulate",Color(0,0,0,0),0.1*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_BOUNCE)
 	else:
-		create_tween().tween_property(hint_container,"modulate",Color(1,1,1,1),0.1).set_trans(Tween.TRANS_BOUNCE)
+		create_tween().tween_property(hint_container,"modulate",Color(1,1,1,1),0.1*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_BOUNCE)
 
 	if show_hint:
 		hint_container.visible = true
@@ -92,6 +92,7 @@ func _update():
 
 	_mirror_to_line_edit()
 	text = label.text
+	line_edit.caret_blink = !RoseGarden.Accessibility.get_disable_animations()
 
 func _process(_delta: float) -> void:
 	label.text = line_edit.text

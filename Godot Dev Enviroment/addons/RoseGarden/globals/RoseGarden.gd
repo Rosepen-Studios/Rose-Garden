@@ -211,11 +211,11 @@ func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 	for item in menu_layout.elements:
 		await menu.add_item(item)
 
-	if target_position.y+menu.size.y>DisplayServer.window_get_size().y:
-		position.y = target_position.y-menu.size.y
+	if target_position.y + menu.size.y > DisplayServer.window_get_size().y:
+		position.y = target_position.y - menu.size.y
 		menu.pivot_offset.y = menu.size.y
-	if target_position.x +menu.size.x>DisplayServer.window_get_size().x:
-		position.x = target_position.x-menu.size.x
+	if target_position.x +menu.size.x > DisplayServer.window_get_size().x:
+		position.x = target_position.x - menu.size.x
 		menu.pivot_offset.x = menu.size.x
 	menu.position = position
 	menu._custom_ready()
@@ -234,10 +234,10 @@ func _create_rc_submenu(menu_layout:RGmenu,target_position:Vector2):
 	target_position.x += submenu.size.x
 	var position = target_position
 
-	if target_position.y+submenu.size.y>DisplayServer.window_get_size().y:
-		position.y = DisplayServer.window_get_size().y-submenu.size.y-16
-	if target_position.x +submenu.size.x>DisplayServer.window_get_size().x:
-		position.x = target_position.x-submenu.size.x*2 +4
+	if target_position.y + submenu.size.y > DisplayServer.window_get_size().y:
+		position.y = DisplayServer.window_get_size().y - submenu.size.y - 16
+	if target_position.x + submenu.size.x > DisplayServer.window_get_size().x:
+		position.x = target_position.x - submenu.size.x*2 + 4
 		submenu.pivot_offset.x = submenu.size.x
 	submenu.position = position
 	submenu._custom_ready()

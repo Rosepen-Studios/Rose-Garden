@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dm5x5yx0k5n1i"]
+[gd_scene format=3 uid="uid://bik3ickeudlog"]
 
-[ext_resource type="Script" uid="uid://brt6ba61noko8" path="res://Demo Scene/Demo.gd" id="1_j13fd"]
+[ext_resource type="Script" uid="uid://cwsed8rpc2m2" path="res://Demo Scene/Demo.gd" id="1_j13fd"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_ax66q"]
 [ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://addons/RoseGarden/components/DropDown/RGDropDown.tscn" id="4_spkjv"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="5_spkjv"]
@@ -19,15 +19,18 @@
 [ext_resource type="PackedScene" uid="uid://n26v0vu3820g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.tscn" id="17_axbo8"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="19_afd3e"]
 [ext_resource type="PackedScene" uid="uid://yemav5jwqvo8" path="res://addons/RoseGarden/components/Tag/RGTag.tscn" id="20_eoelk"]
+[ext_resource type="PackedScene" uid="uid://c8014ryhcbbsw" path="res://addons/RoseGarden/components/DonutGraph/RGDonutGraph.tscn" id="22_r0upb"]
+[ext_resource type="Texture2D" uid="uid://cxrkh0b5fa435" path="res://addons/RoseGarden/icons/Down.svg" id="24_m6j5o"]
+[ext_resource type="Texture2D" uid="uid://c7lsai6efqx62" path="res://addons/RoseGarden/icons/Up.svg" id="25_v7vho"]
 
-[sub_resource type="Gradient" id="Gradient_2enyd"]
-offsets = PackedFloat32Array(0.48630136)
+[sub_resource type="Gradient" id="Gradient_asxb8"]
+offsets = PackedFloat32Array(0.6545454)
 colors = PackedColorArray(0.011764706, 0.011764706, 0.011764706, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_j13fd"]
-gradient = SubResource("Gradient_2enyd")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bwto7"]
+gradient = SubResource("Gradient_asxb8")
 
-[node name="Control" type="Control" unique_id=1345636034]
+[node name="Control" type="Control" unique_id=1387560572]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,18 +39,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j13fd")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1095311505]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=546231873]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_j13fd")
+texture = SubResource("GradientTexture1D_bwto7")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1773463230]
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1630560215]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1760794147]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,150 +61,194 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=259344921]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=63575174]
+layout_mode = 2
+
+[node name="Controls" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=376365866]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Accent Selection" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1487963864]
+[node name="RGText" parent="MarginContainer/VBoxContainer/Controls" unique_id=85953319 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(141, 29)
 layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="RGText" parent="MarginContainer/VBoxContainer/Accent Selection" unique_id=85953319 instance=ExtResource("2_ax66q")]
-custom_minimum_size = Vector2(204, 29)
-layout_mode = 2
-text = "Select accent color:"
+text = "Accent Color:"
 vertical_alignment = "Center"
 
-[node name="RGDrop Down" parent="MarginContainer/VBoxContainer/Accent Selection" unique_id=1673271566 instance=ExtResource("4_spkjv")]
+[node name="RGDrop Down" parent="MarginContainer/VBoxContainer/Controls" unique_id=1673271566 instance=ExtResource("4_spkjv")]
 layout_mode = 2
 
-[node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1590471881]
+[node name="RGText2" parent="MarginContainer/VBoxContainer/Controls" unique_id=1157561052 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(205, 29)
+layout_mode = 2
+text = "Disable Animations:"
+vertical_alignment = "Center"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Controls" unique_id=701002439]
+layout_mode = 2
+alignment = 1
+
+[node name="DisableAnimations" parent="MarginContainer/VBoxContainer/Controls/VBoxContainer" unique_id=1372621177 instance=ExtResource("10_pelkp")]
+layout_mode = 2
+color = "Green"
+
+[node name="RGText3" parent="MarginContainer/VBoxContainer/Controls" unique_id=1907946732 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(189, 29)
+layout_mode = 2
+text = "Increase Contrast:"
+vertical_alignment = "Center"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Controls" unique_id=1480989835]
+layout_mode = 2
+alignment = 1
+
+[node name="IncreaseContrast" parent="MarginContainer/VBoxContainer/Controls/VBoxContainer2" unique_id=772666772 instance=ExtResource("10_pelkp")]
+layout_mode = 2
+color = "Green"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=967788986]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=83184606]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1235980213]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons" unique_id=1374938970]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/Buttons" unique_id=1322515576 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=2116841754 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(69, 29)
 layout_mode = 2
 text = "Button"
 
-[node name="RGText2" parent="MarginContainer/VBoxContainer/Buttons" unique_id=757327958 instance=ExtResource("2_ax66q")]
+[node name="RGText2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=1640078919 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(131, 25)
 layout_mode = 2
 text = "Button with text"
 font_size = "Secondary"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons" unique_id=1872344085]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=683501528]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGButton" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer2" unique_id=1426858299 instance=ExtResource("5_spkjv")]
+[node name="RGButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer2" unique_id=1426858299 instance=ExtResource("5_spkjv")]
 layout_mode = 2
 
-[node name="@Control@38105" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer2" unique_id=513220960 instance=ExtResource("5_spkjv")]
+[node name="_Control_38105" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer2" unique_id=1885944647 instance=ExtResource("5_spkjv")]
 layout_mode = 2
 color = "White"
 
-[node name="@Control@39673" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer2" unique_id=748742472 instance=ExtResource("5_spkjv")]
+[node name="_Control_39673" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer2" unique_id=624764702 instance=ExtResource("5_spkjv")]
 layout_mode = 2
 color = "Red"
 
-[node name="RGText3" parent="MarginContainer/VBoxContainer/Buttons" unique_id=1114825123 instance=ExtResource("2_ax66q")]
+[node name="RGText3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=1141883362 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(135, 25)
 layout_mode = 2
 text = "Button with icon"
 font_size = "Secondary"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons" unique_id=1773143181]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=1329270103]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGButton" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer4" unique_id=812862515 instance=ExtResource("5_spkjv")]
+[node name="RGButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer4" unique_id=1931750489 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("7_spkjv")
 
-[node name="_Control_38105" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer4" unique_id=853319055 instance=ExtResource("5_spkjv")]
+[node name="_Control_38105" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer4" unique_id=140410834 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "White"
 text = ""
 icon = ExtResource("8_odige")
 
-[node name="_Control_39673" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer4" unique_id=1212403859 instance=ExtResource("5_spkjv")]
+[node name="_Control_39673" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer4" unique_id=1685610092 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "Red"
 text = ""
 icon = ExtResource("9_pelkp")
 
-[node name="RGText4" parent="MarginContainer/VBoxContainer/Buttons" unique_id=325066525 instance=ExtResource("2_ax66q")]
+[node name="RGText4" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=1798686192 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(206, 25)
 layout_mode = 2
 text = "Button with text and icon"
 font_size = "Secondary"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons" unique_id=865766026]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=2092261188]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGButton" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer3" unique_id=1065278567 instance=ExtResource("5_spkjv")]
+[node name="RGButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer3" unique_id=1111352025 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(240, 60)
 layout_mode = 2
 icon = ExtResource("7_spkjv")
 
-[node name="_Control_38105" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer3" unique_id=154791432 instance=ExtResource("5_spkjv")]
+[node name="_Control_38105" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer3" unique_id=1243831924 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(240, 60)
 layout_mode = 2
 color = "White"
 icon = ExtResource("8_odige")
 
-[node name="_Control_39673" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer3" unique_id=577222635 instance=ExtResource("5_spkjv")]
+[node name="_Control_39673" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer3" unique_id=1025140274 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(240, 60)
 layout_mode = 2
 color = "Red"
 icon = ExtResource("9_pelkp")
 
-[node name="RGText5" parent="MarginContainer/VBoxContainer/Buttons" unique_id=1137479331 instance=ExtResource("2_ax66q")]
+[node name="RGText5" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=1955911908 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(162, 25)
 layout_mode = 2
 text = "Connected Buttons"
 font_size = "Secondary"
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons" unique_id=306324092]
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=1382881681]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5" unique_id=991644246]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5" unique_id=1147550712]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="RGButton" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer" unique_id=984046405 instance=ExtResource("5_spkjv")]
+[node name="RGButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer" unique_id=977384941 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("7_spkjv")
 connection = "Right"
 
-[node name="RGButton2" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer" unique_id=142851056 instance=ExtResource("5_spkjv")]
+[node name="RGButton2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer" unique_id=1548108781 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("7_spkjv")
 connection = "Both"
 
-[node name="RGButton3" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer" unique_id=923773267 instance=ExtResource("5_spkjv")]
+[node name="RGButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer" unique_id=1641820150 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("7_spkjv")
 connection = "Left"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5" unique_id=1244368118]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5" unique_id=2107348026]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="RGButton" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer2" unique_id=1673963246 instance=ExtResource("5_spkjv")]
+[node name="RGButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer2" unique_id=1540124804 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "White"
@@ -211,7 +256,7 @@ text = ""
 icon = ExtResource("8_odige")
 connection = "Right"
 
-[node name="RGButton2" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer2" unique_id=1054273892 instance=ExtResource("5_spkjv")]
+[node name="RGButton2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer2" unique_id=664355679 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "White"
@@ -219,7 +264,7 @@ text = ""
 icon = ExtResource("8_odige")
 connection = "Both"
 
-[node name="RGButton3" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer2" unique_id=342641719 instance=ExtResource("5_spkjv")]
+[node name="RGButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer2" unique_id=1128706237 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "White"
@@ -227,11 +272,11 @@ text = ""
 icon = ExtResource("8_odige")
 connection = "Left"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5" unique_id=1851105697]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5" unique_id=2039430382]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="RGButton" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer3" unique_id=1778807480 instance=ExtResource("5_spkjv")]
+[node name="RGButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer3" unique_id=1780195919 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "Red"
@@ -239,7 +284,7 @@ text = ""
 icon = ExtResource("9_pelkp")
 connection = "Right"
 
-[node name="RGButton2" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer3" unique_id=1786988954 instance=ExtResource("5_spkjv")]
+[node name="RGButton2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer3" unique_id=1788336387 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "Red"
@@ -247,7 +292,7 @@ text = ""
 icon = ExtResource("9_pelkp")
 connection = "Both"
 
-[node name="RGButton3" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer3" unique_id=350203631 instance=ExtResource("5_spkjv")]
+[node name="RGButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer3" unique_id=95693530 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "Red"
@@ -255,307 +300,308 @@ text = ""
 icon = ExtResource("9_pelkp")
 connection = "Left"
 
-[node name="Toggles" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=895714684]
+[node name="Toggles" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=495858940]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Toggles" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Toggles" unique_id=1649689300]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/Toggles" unique_id=1054101341 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Toggles/Toggles" unique_id=1439541954 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(69, 29)
 layout_mode = 2
 text = "Toggle"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Toggles" unique_id=291787117]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Toggles/Toggles" unique_id=1925305412]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/Toggles/HBoxContainer" unique_id=677088549 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Toggles/Toggles/HBoxContainer" unique_id=747273075 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(61, 25)
 layout_mode = 2
 text = "Normal"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="Toggle" parent="MarginContainer/VBoxContainer/Toggles/HBoxContainer" unique_id=1372621177 instance=ExtResource("10_pelkp")]
+[node name="Toggle" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Toggles/Toggles/HBoxContainer" unique_id=1391437177 instance=ExtResource("10_pelkp")]
 layout_mode = 2
 is_toggled = true
 
-[node name="RGText2" parent="MarginContainer/VBoxContainer/Toggles/HBoxContainer" unique_id=824416542 instance=ExtResource("2_ax66q")]
+[node name="RGText2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Toggles/Toggles/HBoxContainer" unique_id=687180478 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(91, 25)
 layout_mode = 2
 text = "Accessible"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="Toggle2" parent="MarginContainer/VBoxContainer/Toggles/HBoxContainer" unique_id=343847081 instance=ExtResource("10_pelkp")]
+[node name="Toggle2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Toggles/Toggles/HBoxContainer" unique_id=972780270 instance=ExtResource("10_pelkp")]
 layout_mode = 2
 accessible = true
 is_toggled = true
 
-[node name="Text Fields" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=982707486]
+[node name="Text Fields" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1385543099]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Text Fields" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields" unique_id=1171435061]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/Text Fields" unique_id=1663553950 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields" unique_id=345333183 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(97, 29)
 layout_mode = 2
 text = "Text Field"
 
-[node name="RGText2" parent="MarginContainer/VBoxContainer/Text Fields" unique_id=2070569435 instance=ExtResource("2_ax66q")]
+[node name="RGText2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields" unique_id=1166900938 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(74, 25)
 layout_mode = 2
 text = "Text only"
 font_size = "Secondary"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Text Fields" unique_id=1736026933]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields" unique_id=1619286259]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText4" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer" unique_id=852884895 instance=ExtResource("2_ax66q")]
+[node name="RGText4" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer" unique_id=1776715878 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(61, 25)
 layout_mode = 2
 text = "Normal"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="RGTextField" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer" unique_id=808777957 instance=ExtResource("9_odige")]
+[node name="RGTextField" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer" unique_id=808777957 instance=ExtResource("9_odige")]
 custom_minimum_size = Vector2(256, 60)
 layout_mode = 2
 placeholder_text = "Type here"
 
-[node name="RGText2" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer" unique_id=1374507826 instance=ExtResource("2_ax66q")]
+[node name="RGText2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer" unique_id=340233684 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(55, 25)
 layout_mode = 2
 text = "Secret"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="RGTextField2" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer" unique_id=1631835759 instance=ExtResource("9_odige")]
+[node name="RGTextField2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer" unique_id=1723746715 instance=ExtResource("9_odige")]
 custom_minimum_size = Vector2(256, 60)
 layout_mode = 2
 placeholder_text = "Enter password"
 secret = true
 
-[node name="RGText3" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer" unique_id=25960398 instance=ExtResource("2_ax66q")]
+[node name="RGText3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer" unique_id=242827475 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(35, 25)
 layout_mode = 2
 text = "Hint"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="RGTextField3" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer" unique_id=1417533016 instance=ExtResource("9_odige")]
+[node name="RGTextField3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer" unique_id=835407163 instance=ExtResource("9_odige")]
 custom_minimum_size = Vector2(256, 60)
 layout_mode = 2
 size_flags_horizontal = 0
 placeholder_text = "Search..."
 show_hint = true
 
-[node name="RGText3" parent="MarginContainer/VBoxContainer/Text Fields" unique_id=1133349705 instance=ExtResource("2_ax66q")]
+[node name="RGText3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields" unique_id=939998837 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(110, 25)
 layout_mode = 2
 text = "Text and icon"
 font_size = "Secondary"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Text Fields" unique_id=1800299723]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields" unique_id=617612701]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText4" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer2" unique_id=1210194873 instance=ExtResource("2_ax66q")]
+[node name="RGText4" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer2" unique_id=103311820 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(61, 25)
 layout_mode = 2
 text = "Normal"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="RGTextFieldIcon" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer2" unique_id=212265237 instance=ExtResource("11_8py8h")]
+[node name="RGTextFieldIcon" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer2" unique_id=212265237 instance=ExtResource("11_8py8h")]
 custom_minimum_size = Vector2(256, 60)
 layout_mode = 2
 placeholder_text = "Type anything"
 icon = ExtResource("7_spkjv")
 
-[node name="RGText2" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer2" unique_id=803921830 instance=ExtResource("2_ax66q")]
+[node name="RGText2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer2" unique_id=900680784 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(55, 25)
 layout_mode = 2
 text = "Secret"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="RGTextFieldIcon2" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer2" unique_id=602269597 instance=ExtResource("11_8py8h")]
+[node name="RGTextFieldIcon2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer2" unique_id=566188682 instance=ExtResource("11_8py8h")]
 custom_minimum_size = Vector2(256, 60)
 layout_mode = 2
 placeholder_text = "Super secret"
 icon = ExtResource("11_ykqvy")
 secret = true
 
-[node name="RGText3" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer2" unique_id=144208591 instance=ExtResource("2_ax66q")]
+[node name="RGText3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer2" unique_id=1877484273 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(35, 25)
 layout_mode = 2
 text = "Hint"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="RGTextFieldIcon3" parent="MarginContainer/VBoxContainer/Text Fields/HBoxContainer2" unique_id=133076957 instance=ExtResource("11_8py8h")]
+[node name="RGTextFieldIcon3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer2" unique_id=957007937 instance=ExtResource("11_8py8h")]
 custom_minimum_size = Vector2(256, 60)
 layout_mode = 2
 placeholder_text = "Search..."
 show_hint = true
 
-[node name="Segment Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1937234361]
+[node name="Segment Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=215255493]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Segment Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Segment Controls" unique_id=173000811]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/Segment Controls" unique_id=1724188587 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Segment Controls/Segment Controls" unique_id=1992696940 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(175, 29)
 layout_mode = 2
 text = "Segment Control"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Segment Controls" unique_id=5991725]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Segment Controls/Segment Controls" unique_id=1509268640]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/Segment Controls/HBoxContainer" unique_id=170706215 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Segment Controls/Segment Controls/HBoxContainer" unique_id=1401127579 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(35, 25)
 layout_mode = 2
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="RGSegmentControl" parent="MarginContainer/VBoxContainer/Segment Controls/HBoxContainer" unique_id=973767052 instance=ExtResource("12_nnehe")]
+[node name="RGSegmentControl" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Segment Controls/Segment Controls/HBoxContainer" unique_id=973767052 instance=ExtResource("12_nnehe")]
 layout_mode = 2
 
-[node name="RGText2" parent="MarginContainer/VBoxContainer/Segment Controls/HBoxContainer" unique_id=53202989 instance=ExtResource("2_ax66q")]
+[node name="RGText2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Segment Controls/Segment Controls/HBoxContainer" unique_id=1570489342 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(36, 25)
 layout_mode = 2
 text = "Icon"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
-[node name="RGSegmentControlIcon" parent="MarginContainer/VBoxContainer/Segment Controls/HBoxContainer" unique_id=1133264568 instance=ExtResource("11_7xfal")]
+[node name="RGSegmentControlIcon" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Segment Controls/Segment Controls/HBoxContainer" unique_id=1133264568 instance=ExtResource("11_7xfal")]
 layout_mode = 2
 
-[node name="Drop Down" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=411244822]
+[node name="Drop Down" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=698361246]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Drop Down" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Drop Down" unique_id=1363711657]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/Drop Down" unique_id=1555786665 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Drop Down/Drop Down" unique_id=1761297372 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(179, 29)
 layout_mode = 2
 text = "Drop Down Menu"
 
-[node name="RGDrop Down" parent="MarginContainer/VBoxContainer/Drop Down" unique_id=1420824862 instance=ExtResource("4_spkjv")]
+[node name="RGDrop Down" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Drop Down/Drop Down" unique_id=902647139 instance=ExtResource("4_spkjv")]
 layout_mode = 2
 
-[node name="Progress Bar" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=574963856]
+[node name="Section View" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=2054914984]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Section View" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View" unique_id=1069132084]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/Progress Bar" unique_id=1379676697 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View" unique_id=691285820 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(131, 29)
 layout_mode = 2
 text = "Progress Bar"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Progress Bar" unique_id=1458448671]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View" unique_id=721633014]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGProgressBar" parent="MarginContainer/VBoxContainer/Progress Bar/HBoxContainer" unique_id=1750477034 instance=ExtResource("13_axbo8")]
-custom_minimum_size = Vector2(256, 60)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Progress Bar/HBoxContainer" unique_id=1045790962]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="PBless" parent="MarginContainer/VBoxContainer/Progress Bar/HBoxContainer/HBoxContainer" unique_id=966254640 instance=ExtResource("5_spkjv")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-text = ""
-icon = ExtResource("16_afd3e")
-connection = "Right"
-
-[node name="PBmore" parent="MarginContainer/VBoxContainer/Progress Bar/HBoxContainer/HBoxContainer" unique_id=884739234 instance=ExtResource("5_spkjv")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-text = ""
-icon = ExtResource("17_1o0f2")
-connection = "Left"
-
-[node name="Section View" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=382304705]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="RGText" parent="MarginContainer/VBoxContainer/Section View" unique_id=2139760902 instance=ExtResource("2_ax66q")]
-custom_minimum_size = Vector2(131, 29)
-layout_mode = 2
-text = "Progress Bar"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Section View" unique_id=164158868]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Section View/HBoxContainer" unique_id=2060906374]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View/HBoxContainer" unique_id=703491335]
 layout_mode = 2
 alignment = 1
 
-[node name="RGSectionView" parent="MarginContainer/VBoxContainer/Section View/HBoxContainer/VBoxContainer" unique_id=1182488623 instance=ExtResource("17_axbo8")]
+[node name="RGSectionView" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View/HBoxContainer/VBoxContainer" unique_id=1182488623 instance=ExtResource("17_axbo8")]
 layout_mode = 2
 _sections = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Section View/HBoxContainer" unique_id=208411485]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View/HBoxContainer" unique_id=1251658046]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="SVless" parent="MarginContainer/VBoxContainer/Section View/HBoxContainer/HBoxContainer" unique_id=1029130558 instance=ExtResource("5_spkjv")]
+[node name="SVless" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View/HBoxContainer/HBoxContainer" unique_id=1271870183 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("16_afd3e")
 connection = "Right"
 
-[node name="SVmore" parent="MarginContainer/VBoxContainer/Section View/HBoxContainer/HBoxContainer" unique_id=640895224 instance=ExtResource("5_spkjv")]
+[node name="SVmore" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View/HBoxContainer/HBoxContainer" unique_id=1084794866 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("17_1o0f2")
 connection = "Left"
 
-[node name="Tags" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=168024943]
+[node name="Tags" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1612978260]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tags" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Tags" unique_id=1712947264]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/Tags" unique_id=571313194 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Tags/Tags" unique_id=125288041 instance=ExtResource("2_ax66q")]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Tags" unique_id=1733748935]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Tags/Tags" unique_id=491989981]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGTextField" parent="MarginContainer/VBoxContainer/Tags/HBoxContainer" unique_id=252560905 instance=ExtResource("9_odige")]
+[node name="TagName" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Tags/Tags/HBoxContainer" unique_id=1656534842 instance=ExtResource("9_odige")]
 custom_minimum_size = Vector2(256, 60)
 layout_mode = 2
 placeholder_text = "Name this tag"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Tags/HBoxContainer" unique_id=447832544]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Tags/Tags/HBoxContainer" unique_id=1510008031]
 layout_mode = 2
 alignment = 1
 
-[node name="RGTag" parent="MarginContainer/VBoxContainer/Tags/HBoxContainer/VBoxContainer" unique_id=1946555419 instance=ExtResource("20_eoelk")]
+[node name="RGTag" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Tags/Tags/HBoxContainer/VBoxContainer" unique_id=1946555419 instance=ExtResource("20_eoelk")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RightClickMenu" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=714389718]
+[node name="RightClickMenu" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=1752441268]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightClickMenu" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/RightClickMenu" unique_id=670003997]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/RightClickMenu" unique_id=1070846224 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/RightClickMenu/RightClickMenu" unique_id=2132474150 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(176, 29)
 layout_mode = 2
 text = "Right Click Menu"
 
-[node name="Right Click Menu" parent="MarginContainer/VBoxContainer/RightClickMenu" unique_id=535912435 instance=ExtResource("19_afd3e")]
-custom_minimum_size = Vector2(0, 128)
+[node name="Right Click Menu" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/RightClickMenu/RightClickMenu" unique_id=535912435 instance=ExtResource("19_afd3e")]
+custom_minimum_size = Vector2(1472, 128)
 layout_mode = 2
+size_flags_horizontal = 0
 focus_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/RightClickMenu/Right Click Menu" unique_id=80266039]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/RightClickMenu/RightClickMenu/Right Click Menu" unique_id=279913601]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -563,17 +609,168 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/RightClickMenu/Right Click Menu/CenterContainer" unique_id=1616651404 instance=ExtResource("2_ax66q")]
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/RightClickMenu/RightClickMenu/Right Click Menu/CenterContainer" unique_id=169148071 instance=ExtResource("2_ax66q")]
 custom_minimum_size = Vector2(167, 29)
 layout_mode = 2
 text = "Right Click Here"
 
-[connection signal="new_selection" from="MarginContainer/VBoxContainer/Accent Selection/RGDrop Down" to="." method="_on_rg_drop_down_new_selection"]
-[connection signal="text_submitted" from="MarginContainer/VBoxContainer/Text Fields/HBoxContainer/RGTextField2" to="." method="_on_text_field_secret_text_submitted"]
-[connection signal="text_submitted" from="MarginContainer/VBoxContainer/Text Fields/HBoxContainer2/RGTextFieldIcon2" to="." method="_on_text_field_icon_secret_text_submitted"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Progress Bar/HBoxContainer/HBoxContainer/PBless" to="." method="_on_pbless_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Progress Bar/HBoxContainer/HBoxContainer/PBmore" to="." method="_on_pbmore_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Section View/HBoxContainer/HBoxContainer/SVless" to="." method="_on_svless_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Section View/HBoxContainer/HBoxContainer/SVmore" to="." method="_on_svmore_pressed"]
-[connection signal="text_changed" from="MarginContainer/VBoxContainer/Tags/HBoxContainer/RGTextField" to="." method="_on_tag_name_text_changed"]
-[connection signal="gui_input" from="MarginContainer/VBoxContainer/RightClickMenu/Right Click Menu" to="." method="_on_right_click_menu_gui_input"]
+[node name="Progress Bar" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=355668453]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Progress Bar" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar" unique_id=389662222]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar" unique_id=2144698933 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(131, 29)
+layout_mode = 2
+text = "Progress Bar"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar" unique_id=1158305988]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGProgressBar" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar/HBoxContainer" unique_id=1750477034 instance=ExtResource("13_axbo8")]
+custom_minimum_size = Vector2(256, 60)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar/HBoxContainer" unique_id=1218735986]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PBDown" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar/HBoxContainer/HBoxContainer" unique_id=71148491 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("24_m6j5o")
+connection = "Right"
+
+[node name="PBUp" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar/HBoxContainer/HBoxContainer" unique_id=181454110 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("25_v7vho")
+connection = "Left"
+
+[node name="Donut Graphs" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=266647888]
+custom_minimum_size = Vector2(1476, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs" unique_id=1787209547]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer" unique_id=670757713 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(132, 29)
+layout_mode = 2
+text = "Donut Graph"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer" unique_id=1190376856]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGDonutGraph" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer" unique_id=1144614823 instance=ExtResource("22_r0upb")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer" unique_id=1049483670]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=792853470]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DGDown" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1297316190 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("24_m6j5o")
+connection = "Right"
+
+[node name="DGUp" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=639037657 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("25_v7vho")
+connection = "Left"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer" unique_id=1842508216]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGDonutGraph" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer2" unique_id=433531739 instance=ExtResource("22_r0upb")]
+layout_mode = 2
+mode = "Value"
+value_name = "min"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer2" unique_id=1154714892]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1077836370]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DGDown" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=487922476 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("24_m6j5o")
+connection = "Right"
+
+[node name="DGUp" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1307535958 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("25_v7vho")
+connection = "Left"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1892811987]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="RGSegmentControl" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=75011021 instance=ExtResource("12_nnehe")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=592453982]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PrevView" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1706866861 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("16_afd3e")
+connection = "Right"
+
+[node name="NextView" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=30566991 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("17_1o0f2")
+connection = "Left"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=543119352]
+
+[connection signal="new_selection" from="MarginContainer/VBoxContainer/Controls/RGDrop Down" to="." method="_on_accent_new_selection"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Controls/VBoxContainer/DisableAnimations" to="." method="_on_disable_animations_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Controls/VBoxContainer2/IncreaseContrast" to="." method="_on_increase_contrast_toggled"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer/RGTextField2" to="." method="_on_rg_text_field_1_text_submitted"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer2/RGTextFieldIcon2" to="." method="_on_rg_text_field_2_text_submitted"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View/HBoxContainer/HBoxContainer/SVless" to="." method="_on_svless_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View/HBoxContainer/HBoxContainer/SVmore" to="." method="_on_svmore_pressed"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Tags/Tags/HBoxContainer/TagName" to="." method="_on_tag_name_text_changed"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/RightClickMenu/RightClickMenu/Right Click Menu" to="." method="_on_rcm_gui_input"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar/HBoxContainer/HBoxContainer/PBDown" to="." method="_on_pb_down_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar/HBoxContainer/HBoxContainer/PBUp" to="." method="_on_pb_up_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/DGDown" to="." method="_on_dg1_down_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/DGUp" to="." method="_on_dg1_up_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/DGDown" to="." method="_on_dg2_down_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Donut Graphs/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer/DGUp" to="." method="_on_dg2_up_pressed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer2/RGSegmentControl" to="." method="_on_view_control_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/PrevView" to="." method="_on_prev_view_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/NextView" to="." method="_on_next_view_pressed"]
