@@ -32,7 +32,7 @@ Rose Garden is under development, some components are not yet fully developed or
 | Progress Bar | ✅ | ✅ |
 | Text | ✅ | ✅ |
 | Container | ✅ | ✅ |
-| Donut Graph | ✅ |  |
+| Donut Graph | ✅ | ✅ |
 | X-Y Graph | ✅ |  |
 | Bar Graph | ✅ |  |
 | Hex Graph | ✅ |  |
