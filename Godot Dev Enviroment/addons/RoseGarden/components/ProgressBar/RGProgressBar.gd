@@ -28,7 +28,6 @@ func set_color(new_color:String):
 	if !RoseGarden.Colors.verify_color(new_color) == OK:
 		return ERR_INVALID_PARAMETER
 	color = new_color
-	_update()
 	_value_update()
 
 func get_color():
@@ -36,7 +35,7 @@ func get_color():
 
 func tween_value(new_value:float, duration:float,trans := Tween.TRANS_SINE,ease := Tween.EASE_IN_OUT):
 	var tween = create_tween()
-	tween.tween_property(self, "value", new_value, duration*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(ease).set_trans(trans)
+	tween.tween_property(self, "value", new_value, duration*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(ease) .set_trans(trans)
 	if new_value < 0 or new_value > 100:
 		return ERR_INVALID_PARAMETER
 	return OK
@@ -49,6 +48,7 @@ func _ready() -> void:
 	_value_update()
 	RoseGarden.custom_textures_changed.connect(_update)
 	RoseGarden.custom_themes_changed.connect(_update_themes)
+	RoseGarden.update_components.connect(_update)
 	_update()
 	_update_themes()
 
@@ -72,6 +72,8 @@ func _update():
 
 	if custom_minimum_size < Vector2(60,60):
 		custom_minimum_size = Vector2(60,60)
+
+	set_color(color)
 
 func _process(_delta:float) -> void:
 	if Engine.is_editor_hint():

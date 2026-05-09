@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://bb73lbvti8wp6"]
 
 [ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="1_pa7x6"]
-[ext_resource type="Texture2D" uid="uid://cmj5vysrpsml7" path="res://addons/RoseGarden/components/Button/Base/BaseGray.svg" id="3_uaxtl"]
-[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://addons/RoseGarden/themes/Secondary.tres" id="4_uaxtl"]
+[ext_resource type="Texture2D" uid="uid://cmj5vysrpsml7" path="res://addons/RoseGarden/components/Button/BaseNone/BaseGray.svg" id="3_uaxtl"]
+[ext_resource type="Theme" uid="uid://dcjb0tugy43pc" path="res://addons/RoseGarden/themes/Secondary.tres" id="4_uaxtl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ir1hl"]
 
 [node name="RGButton" type="Control" unique_id=1426858299]
 custom_minimum_size = Vector2(192, 60)
 layout_mode = 3
-anchor_right = 0.093
+anchor_right = 0.07453846
 offset_right = -0.80000305
 offset_bottom = 60.0
 pivot_offset = Vector2(96, 30)

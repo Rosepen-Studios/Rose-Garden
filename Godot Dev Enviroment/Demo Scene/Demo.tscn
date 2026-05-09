@@ -300,6 +300,12 @@ text = ""
 icon = ExtResource("9_pelkp")
 connection = "Left"
 
+[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons" unique_id=1357090297 instance=ExtResource("2_ax66q")]
+custom_minimum_size = Vector2(83, 20)
+layout_mode = 2
+text = "This is a test"
+font_size = "Info"
+
 [node name="Toggles" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=495858940]
 custom_minimum_size = Vector2(1476, 0)
 layout_mode = 2
