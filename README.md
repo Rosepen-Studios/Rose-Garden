@@ -33,10 +33,11 @@ Rose Garden is under development, some components are not yet fully developed or
 | Text | ✅ | ✅ |
 | Container | ✅ | ✅ |
 | Donut Graph | ✅ | ✅ |
+| Tooltips | ✅ | ✅ |
 | X-Y Graph | ✅ |  |
 | Bar Graph | ✅ |  |
 | Hex Graph | ✅ |  |
-| Tooltips |  |  |
+
 | Accordion Menu |  |  |
 
 - **Figma Status**: Online, Not Complete

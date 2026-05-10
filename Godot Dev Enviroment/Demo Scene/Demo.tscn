@@ -235,7 +235,7 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("7_spkjv")
-connection = "Both"
+connection = "BothHorizontal"
 
 [node name="RGButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer" unique_id=1641820150 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
@@ -262,7 +262,7 @@ layout_mode = 2
 color = "White"
 text = ""
 icon = ExtResource("8_odige")
-connection = "Both"
+connection = "BothHorizontal"
 
 [node name="RGButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer2" unique_id=1128706237 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
@@ -290,7 +290,7 @@ layout_mode = 2
 color = "Red"
 text = ""
 icon = ExtResource("9_pelkp")
-connection = "Both"
+connection = "BothHorizontal"
 
 [node name="RGButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer3" unique_id=95693530 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
@@ -300,11 +300,90 @@ text = ""
 icon = ExtResource("9_pelkp")
 connection = "Left"
 
-[node name="RGText" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons" unique_id=1357090297 instance=ExtResource("2_ax66q")]
-custom_minimum_size = Vector2(83, 20)
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons" unique_id=2121066190]
 layout_mode = 2
-text = "This is a test"
-font_size = "Info"
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer" unique_id=1859660754]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RGButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer" unique_id=981238451 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("7_spkjv")
+connection = "Down"
+
+[node name="RGButton2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer" unique_id=1180100730 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("7_spkjv")
+connection = "BothVertical"
+
+[node name="RGButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer" unique_id=1542224180 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("7_spkjv")
+connection = "Up"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer" unique_id=743467287]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RGButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer2" unique_id=304268267 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "White"
+text = ""
+icon = ExtResource("8_odige")
+connection = "Down"
+
+[node name="RGButton2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer2" unique_id=2043641519 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "White"
+text = ""
+icon = ExtResource("8_odige")
+connection = "BothVertical"
+
+[node name="RGButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer2" unique_id=1100792532 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "White"
+text = ""
+icon = ExtResource("8_odige")
+connection = "Up"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer" unique_id=354395520]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RGButton" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer3" unique_id=1575376336 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Red"
+text = ""
+icon = ExtResource("9_pelkp")
+connection = "Down"
+
+[node name="RGButton2" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer3" unique_id=620546975 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Red"
+text = ""
+icon = ExtResource("9_pelkp")
+connection = "BothVertical"
+
+[node name="RGButton3" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer3" unique_id=1779929786 instance=ExtResource("5_spkjv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Red"
+text = ""
+icon = ExtResource("9_pelkp")
+connection = "Up"
 
 [node name="Toggles" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer" unique_id=495858940]
 custom_minimum_size = Vector2(1476, 0)
@@ -762,9 +841,14 @@ connection = "Left"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=543119352]
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2056876258]
+layer = 2
+
 [connection signal="new_selection" from="MarginContainer/VBoxContainer/Controls/RGDrop Down" to="." method="_on_accent_new_selection"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Controls/VBoxContainer/DisableAnimations" to="." method="_on_disable_animations_toggled"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Controls/VBoxContainer2/IncreaseContrast" to="." method="_on_increase_contrast_toggled"]
+[connection signal="de_hovered" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer3/_Control_39673" to="." method="_on__control_39673_de_hovered"]
+[connection signal="hovered" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer3/_Control_39673" to="." method="_on__control_39673_hovered"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer/RGTextField2" to="." method="_on_rg_text_field_1_text_submitted"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer2/RGTextFieldIcon2" to="." method="_on_rg_text_field_2_text_submitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View/HBoxContainer/HBoxContainer/SVless" to="." method="_on_svless_pressed"]

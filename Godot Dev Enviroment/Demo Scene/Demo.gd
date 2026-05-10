@@ -14,6 +14,9 @@ extends Control
 @onready var button4: RGButton = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer3/RGButton
 @onready var button5: RGButton = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer3/RGButton2
 @onready var button6: RGButton = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer5/HBoxContainer3/RGButton3
+@onready var button7: RGButton = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer3/RGButton2
+@onready var button8: RGButton = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer3/RGButton3
+@onready var button9: RGButton = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer/VBoxContainer3/RGButton
 
 #Toggles
 @onready var toggle1: RGToggle = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Toggles/Toggles/HBoxContainer/Toggle
@@ -36,6 +39,7 @@ extends Control
 @onready var section_view: RGSectionView = $"MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Section View/Section View/HBoxContainer/VBoxContainer/RGSectionView"
 @onready var tag: RGTag = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Tags/Tags/HBoxContainer/VBoxContainer/RGTag
 @onready var progress_bar: RGProgressBar = $"MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar/HBoxContainer/RGProgressBar"
+@onready var buttons_container: VBoxContainer = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons
 
 
 var view := 0
@@ -71,9 +75,9 @@ func _ready() -> void:
 	sc1.add_item("option_3","Option 3")
 	
 	#Segment Control Icon
-	sc2.add_item("home",RoseGarden.Icons.get_icon("Home"))
-	sc2.add_item("book",RoseGarden.Icons.get_icon("Book"))
-	sc2.add_item("checklist",RoseGarden.Icons.get_icon("Checklist"))
+	sc2.add_item("home",Icons.get_icon("Home"))
+	sc2.add_item("book",Icons.get_icon("Book"))
+	sc2.add_item("checklist",Icons.get_icon("Checklist"))
 	
 	#Drop Down
 	drop_down.add_item("Option 1",0)
@@ -82,14 +86,15 @@ func _ready() -> void:
 	
 	#Right Click Menu Creation
 	RoseGarden.set_menu_layer($CanvasLayer)
-	menu.add_action("Home",RoseGarden.Icons.HOME,empty)
-	menu.add_menu("Menu",RoseGarden.Icons.CHECKLIST,submenu)
-	menu.add_seperator()
-	menu.add_action("Delete",RoseGarden.Icons.TRASH,empty,[],true)
-	submenu.add_action("Test",RoseGarden.Icons.HOME,empty)
-	submenu.add_action("Test2",RoseGarden.Icons.HOME,empty)
-	submenu.add_action("Test3",RoseGarden.Icons.HOME,empty)
-
+	RoseGarden.set_tooltip_layer($CanvasLayer2)
+	menu.add_action("Home",Icons.get_icon("Home"),empty)
+	menu.add_menu("Menu",Icons.get_icon("Checklist"),submenu)
+	menu.add_seperator() 
+	menu.add_action("Delete",Icons.get_icon("Trash"),empty,[],true)
+	submenu.add_action("Test",Icons.get_icon("Home"),empty)
+	submenu.add_action("Test2",Icons.get_icon("Home"),empty)
+	submenu.add_action("Test3",Icons.get_icon("Home"),empty)
+	
 
 func _on_prev_view_pressed() -> void:
 	view_control.select_prev()
@@ -104,7 +109,7 @@ func _on_view_control_item_selected(item_name: String) -> void:
 		accent_dropdown.add_item("Tasker",8)
 	else:
 		accent_dropdown.remove_item(8)
-	create_tween().tween_property(view_scroll,"scroll_horizontal",view*1476,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(view_scroll,"scroll_horizontal",view*buttons_container.size.x,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 
 func _find_index(array:Array,item):
@@ -130,6 +135,9 @@ func _on_accent_new_selection(selection: String) -> void:
 	button4.set_color(selection)
 	button5.set_color(selection)
 	button6.set_color(selection)
+	button7.set_color(selection)
+	button8.set_color(selection) 
+	button9.set_color(selection)
 	toggle1.set_color(selection)
 	toggle2.set_color(selection)
 	progress_bar.set_color(selection)

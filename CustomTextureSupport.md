@@ -9,3 +9,4 @@
 - [x] Text
 - [ ] Text Field
 - [ ] Toggle
+- [x] Tooltip

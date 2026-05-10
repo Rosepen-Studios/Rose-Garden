@@ -19,13 +19,13 @@ config/macos_native_icon="res://Icon.icns"
 [autoload]
 
 RoseGarden="*uid://hnivujajew1k"
+Icons="*uid://cfs8qxwnoenps"
 
 [display]
 
 window/size/viewport_width=1536
 window/size/viewport_height=1088
 window/size/initial_position_type=4
-window/size/resizable=false
 
 [editor_plugins]
 
