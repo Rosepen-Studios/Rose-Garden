@@ -190,7 +190,7 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("7_spkjv")
-connection = "Both"
+connection = "BothHorizontal"
 
 [node name="RGButton3" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer" unique_id=923773267 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
@@ -217,7 +217,7 @@ layout_mode = 2
 color = "White"
 text = ""
 icon = ExtResource("8_odige")
-connection = "Both"
+connection = "BothHorizontal"
 
 [node name="RGButton3" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer2" unique_id=342641719 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)
@@ -245,7 +245,7 @@ layout_mode = 2
 color = "Red"
 text = ""
 icon = ExtResource("9_pelkp")
-connection = "Both"
+connection = "BothHorizontal"
 
 [node name="RGButton3" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer5/HBoxContainer3" unique_id=350203631 instance=ExtResource("5_spkjv")]
 custom_minimum_size = Vector2(60, 60)

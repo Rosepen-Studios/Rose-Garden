@@ -41,10 +41,9 @@ extends Control
 @onready var progress_bar: RGProgressBar = $"MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Progress Bar/Progress Bar/HBoxContainer/RGProgressBar"
 @onready var buttons_container: VBoxContainer = $MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons
 
-
 var view := 0
 var views =["button","toggle","text_field","segment_control","drop_down","section_view","tag","rcm","progress_bar","donut_graph"]
-
+@export var curve = Curve.new()
 var menu = RGmenu.new()
 var submenu = RGmenu.new()
 func _ready() -> void:
@@ -75,9 +74,9 @@ func _ready() -> void:
 	sc1.add_item("option_3","Option 3")
 	
 	#Segment Control Icon
-	sc2.add_item("home",Icons.get_icon("Home"))
-	sc2.add_item("book",Icons.get_icon("Book"))
-	sc2.add_item("checklist",Icons.get_icon("Checklist"))
+	sc2.add_item("home",Icons.HOME)
+	sc2.add_item("book",Icons.CHECKBOOK)
+	sc2.add_item("checklist",Icons.CHECKLIST)
 	
 	#Drop Down
 	drop_down.add_item("Option 1",0)
@@ -87,13 +86,14 @@ func _ready() -> void:
 	#Right Click Menu Creation
 	RoseGarden.set_menu_layer($CanvasLayer)
 	RoseGarden.set_tooltip_layer($CanvasLayer2)
-	menu.add_action("Home",Icons.get_icon("Home"),empty)
-	menu.add_menu("Menu",Icons.get_icon("Checklist"),submenu)
+	RoseGarden.set_toast_layer($CanvasLayer3)
+	menu.add_action("Home",Icons.HOME,empty)
+	menu.add_menu("Menu",Icons.CHECKLIST,submenu)
 	menu.add_seperator() 
-	menu.add_action("Delete",Icons.get_icon("Trash"),empty,[],true)
-	submenu.add_action("Test",Icons.get_icon("Home"),empty)
-	submenu.add_action("Test2",Icons.get_icon("Home"),empty)
-	submenu.add_action("Test3",Icons.get_icon("Home"),empty)
+	menu.add_action("Delete",Icons.TRASH,empty,[],true)
+	submenu.add_action("Test",Icons.HOME,empty)
+	submenu.add_action("Test2",Icons.HOME,empty)
+	submenu.add_action("Test3",Icons.HOME,empty)
 	
 
 func _on_prev_view_pressed() -> void:
@@ -190,3 +190,7 @@ func _on_increase_contrast_toggled(toggled_on: bool) -> void:
 
 func _on_disable_animations_toggled(toggled_on: bool) -> void:
 	RoseGarden.Accessibility.set_disable_animations(toggled_on)
+
+
+func _on__control_39673_pressed() -> void:
+	RoseGarden.create_toast("This is a toast","Blue")

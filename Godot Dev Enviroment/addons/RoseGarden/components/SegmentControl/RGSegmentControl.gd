@@ -24,7 +24,7 @@ func add_item(item_name:String,item_text:String) -> int:
 	target.text = "   "+item_text+"   "
 	target.theme = RoseGarden.Themes.Secondary
 	items_text[item_name] = item_text
-	
+
 	target.add_child(Button.new())
 	var target2:Button = target.get_child(0)
 	target2.set_script(load("res://addons/RoseGarden/components/SegmentControl/RGsc_button.gd"))

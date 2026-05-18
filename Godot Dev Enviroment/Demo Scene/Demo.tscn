@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwsed8rpc2m2" path="res://Demo Scene/Demo.gd" id="1_j13fd"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_ax66q"]
+[ext_resource type="Curve" uid="uid://pm5557rqtxrw" path="res://addons/RoseGarden/components/Toast/anim_curve.tres" id="2_eoelk"]
 [ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://addons/RoseGarden/components/DropDown/RGDropDown.tscn" id="4_spkjv"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="5_spkjv"]
 [ext_resource type="Texture2D" uid="uid://c4u5gv4vtcy7x" path="res://addons/RoseGarden/icons/Home.svg" id="7_spkjv"]
@@ -38,6 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j13fd")
+curve = ExtResource("2_eoelk")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=546231873]
 layout_mode = 1
@@ -844,9 +846,12 @@ connection = "Left"
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2056876258]
 layer = 2
 
+[node name="CanvasLayer3" type="CanvasLayer" parent="." unique_id=663799878]
+
 [connection signal="new_selection" from="MarginContainer/VBoxContainer/Controls/RGDrop Down" to="." method="_on_accent_new_selection"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Controls/VBoxContainer/DisableAnimations" to="." method="_on_disable_animations_toggled"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Controls/VBoxContainer2/IncreaseContrast" to="." method="_on_increase_contrast_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer2/_Control_39673" to="." method="_on__control_39673_pressed"]
 [connection signal="de_hovered" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer3/_Control_39673" to="." method="_on__control_39673_de_hovered"]
 [connection signal="hovered" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer3/_Control_39673" to="." method="_on__control_39673_hovered"]
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Text Fields/Text Fields/HBoxContainer/RGTextField2" to="." method="_on_rg_text_field_1_text_submitted"]

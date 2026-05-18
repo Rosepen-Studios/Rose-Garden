@@ -94,6 +94,12 @@ class Colors:
 			return ERR_INVALID_PARAMETER
 		return _color_dic[color]
 
+class Animations:
+	static var rcmSelection:bool = true
+	static var rcmAppearance:bool = true
+	static var ddmSelection:bool = true
+	static var toastAppearance:bool = true
+
 #Themes
 class Themes:
 	static var Main = load("res://addons/RoseGarden/themes/Main.tres")
@@ -186,6 +192,9 @@ func get_menu_layer():
 func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 	if menu_layer == null:
 		return ERR_DOES_NOT_EXIST
+	if menu_layer.get_child_count() > 0:
+		_delete_all_menus()
+		return ERR_ALREADY_EXISTS
 	menu_layer.add_child(preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn").instantiate())
 	var menu:RGRighClickMenu = menu_layer.get_child(get_child_count()-1)
 	var position = target_position
@@ -238,8 +247,8 @@ func _delete_submenu():
 func _delete_all_menus():
 	var menus = menu_layer.get_children()
 	for child in menus:
-		child.modulate = Color(1,1,1,0)
-	await get_tree().create_timer(0.3).timeout
+		create_tween().tween_property(child,"scale",Vector2(0,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await get_tree().create_timer(0.1).timeout
 	for child in menus:
 		if child != null:
 			child.queue_free()
@@ -256,6 +265,8 @@ func set_tooltip_layer(layer:CanvasLayer):
 	tooltip_layer = layer
 
 func create_tooltip(tooltip:RGTooltip,position:Vector2):
+	if tooltip_layer == null:
+		return ERR_DOES_NOT_EXIST
 	if tooltip_layer.get_class() != "CanvasLayer":
 		return ERR_DOES_NOT_EXIST
 	tooltip_layer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RGtooltip.tscn").instantiate())
@@ -267,10 +278,10 @@ func create_tooltip(tooltip:RGTooltip,position:Vector2):
 	tooltip_object.modulate = Color(1,1,1,0)
 	await get_tree().process_frame
 	var target_position = position + Vector2(16,16)
-	if target_position.x + tooltip_object.size.x > DisplayServer.window_get_size().x:
-		target_position.x = position.x - tooltip_object.size.x - 16
-	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y:
-		target_position.y = position.y - tooltip_object.size.y - 16
+	if target_position.x + tooltip_object.size.x > DisplayServer.window_get_size().x-30:
+		target_position.x = position.x - tooltip_object.size.x - 46
+	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y-30:
+		target_position.y = position.y - tooltip_object.size.y - 46
 	tooltip_object.position = target_position
 	create_tween().tween_property(tooltip_object,"modulate",Color(1,1,1,1),0.065*int(!RoseGarden.Accessibility.get_disable_animations()))
 	return OK
@@ -282,3 +293,57 @@ func clear_tooltips():
 		await tween.finished
 		child.queue_free()
 	return OK
+
+#Toast functions
+var toast_layer:CanvasLayer
+
+func set_toast_layer(layer:CanvasLayer):
+	toast_layer = layer
+
+func create_toast(text:String,color:String,clear_time:float=4.0):
+	if toast_layer == null:
+		return ERR_DOES_NOT_EXIST
+	if toast_layer.get_class() != "CanvasLayer":
+		return ERR_DOES_NOT_EXIST
+	if Colors.verify_color(color) != OK:
+		return ERR_INVALID_PARAMETER
+	if toast_layer.get_child_count() > 0:
+		return ERR_ALREADY_EXISTS
+	toast_layer.add_child(preload("res://addons/RoseGarden/components/Toast/RGtoast.tscn").instantiate())
+	var toast_object = toast_layer.get_child(get_child_count()-1)
+	toast_object.set_text(text)
+	toast_object.set_color(color)
+	toast_object.position = Vector2(DisplayServer.window_get_size().x/2-toast_object.size.x/2,DisplayServer.window_get_size().y)
+	toast_object.modulate = Color(1,1,1,0)
+	toast_object.scale = Vector2(0,0)
+	var tween = create_tween().set_parallel(true)
+	var curve = preload("res://addons/RoseGarden/components/Toast/anim_curve.tres")
+	var start_pos = toast_object.position
+	var start_scale = toast_object.scale
+	tween.tween_method(func(t): toast_object.position = start_pos.lerp(Vector2(DisplayServer.window_get_size().x/2-toast_object.size.x/2,DisplayServer.window_get_size().y-100), curve.sample(t)), 0.0, 1.0, 0.4*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations()))
+	tween.tween_method(func(t): toast_object.scale = start_scale.lerp(Vector2(1,1), curve.sample(t)), 0.0, 1.0, 0.4*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations()))
+	tween.tween_property(toast_object,"modulate",Color(1,1,1,1),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	_clear_toast_timer(clear_time,toast_object)
+	return OK
+
+func _clear_toast_timer(time:float,target):
+	await get_tree().create_timer(time).timeout
+	if toast_layer.get_child_count() == 0:
+		return
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(target,"position:y",DisplayServer.window_get_size().y,0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(target,"scale",Vector2(0,0),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(target,"modulate",Color(1,1,1,0),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	if target != null:
+		target.queue_free()
+
+func clear_toast():
+	var tween = create_tween().set_parallel(true)
+	for child in toast_layer.get_children():
+		tween.tween_property(child,"position:y",DisplayServer.window_get_size().y,0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(child,"scale",Vector2(0,0),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(child,"modulate",Color(1,1,1,0),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		await tween.finished
+		if child != null:
+			child.queue_free()

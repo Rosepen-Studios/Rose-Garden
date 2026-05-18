@@ -43,9 +43,9 @@ func _ready() -> void:
 	segment_control.add_item("option_3","Option 3")
 
 	#Segment Control Icon
-	segment_control_icon.add_item("home",RoseGarden.Icons.get_icon("Home"))
-	segment_control_icon.add_item("book",RoseGarden.Icons.get_icon("Book"))
-	segment_control_icon.add_item("checklist",RoseGarden.Icons.get_icon("Checklist"))
+	segment_control_icon.add_item("home",Icons.HOME)
+	segment_control_icon.add_item("book",Icons.CHECKBOOK)
+	segment_control_icon.add_item("checklist",Icons.CHECKLIST)
 
 	#Drop Down
 	drop_down.add_item("Option 1",0)
@@ -54,13 +54,13 @@ func _ready() -> void:
 
 	#Right Click Menu Creation
 	RoseGarden.set_menu_layer($CanvasLayer)
-	menu.add_action("Home",RoseGarden.Icons.HOME,empty)
-	menu.add_menu("Menu",RoseGarden.Icons.CHECKLIST,submenu)
+	menu.add_action("Home",Icons.HOME,empty)
+	menu.add_menu("Menu",Icons.CHECKLIST,submenu)
 	menu.add_seperator()
-	menu.add_action("Delete",RoseGarden.Icons.TRASH,empty,[],true)
-	submenu.add_action("Test",RoseGarden.Icons.HOME,empty)
-	submenu.add_action("Test2",RoseGarden.Icons.HOME,empty)
-	submenu.add_action("Test3",RoseGarden.Icons.HOME,empty)
+	menu.add_action("Delete",Icons.TRASH,empty,[],true)
+	submenu.add_action("Test",Icons.HOME,empty)
+	submenu.add_action("Test2",Icons.HOME,empty)
+	submenu.add_action("Test3",Icons.HOME,empty)
 
 func empty():#Just an empty function for the rcm to call
 	pass
