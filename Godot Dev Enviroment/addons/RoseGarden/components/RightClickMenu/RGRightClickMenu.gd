@@ -89,7 +89,13 @@ func _update():
 	texture.size.y = size.y
 
 func select_position(pos:int,destructive:bool=false):
-	create_tween().tween_property(selection,"position:y",pos,0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.Animations.rcmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	if destructive:
+		selection.modulate = Color("170707")
+	else:
+		selection.modulate = Color("414141")
+	var tween = create_tween()
+	tween.tween_property(selection,"position:y",pos,0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.Animations.rcmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await get_tree().create_timer(0.1).timeout
 	if destructive:
 		selection.modulate = Color("170707")
 	else:

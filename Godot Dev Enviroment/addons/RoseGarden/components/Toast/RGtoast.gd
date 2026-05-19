@@ -1,5 +1,6 @@
 @tool
 extends Control
+class_name RGtoast
 @onready var base: NinePatchRect = $NinePatchRect
 @onready var label: Label = $NinePatchRect/CenterContainer/Label
 @onready var button: Button = $Button
