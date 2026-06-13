@@ -1,4 +1,5 @@
 extends Control
+class_name RGrcm_item
 @onready var title_label: Label = $MarginContainer/HBoxContainer/Label
 @onready var icon_container: TextureRect = $MarginContainer/HBoxContainer/TextureRect
 @onready var arrow: TextureRect = $MarginContainer/HBoxContainer2/TextureRect
@@ -16,9 +17,9 @@ var manager:RGRighClickMenu
 
 func _ready() -> void:
 	RoseGarden.custom_textures_changed.connect(update)
-	RoseGarden.custom_themes_changed.connect(_update_textures)
+	RoseGarden.custom_themes_changed.connect(_update_themes)
 	update()
-	_update_textures()
+	_update_themes()
 
 func update():
 	title_label.text = title
@@ -53,7 +54,7 @@ func _on_button_pressed() -> void:
 	if action_params == []:
 		action.call()
 	else:
-		action.call(action_params)
+		action.callv(action_params)
 
-func _update_textures():
+func _update_themes():
 	title_label.theme = RoseGarden.Themes.Main

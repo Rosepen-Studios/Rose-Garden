@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m4f24cvdmhhw"
-path="res://.godot/imported/Search.svg-1b25512e01a071fb5401c3a1adcb534b.ctex"
+uid="uid://cg8fr6m0bx3gb"
+path="res://.godot/imported/Copy.svg-7df5d92e9d5161f8554820c5962e0791.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/RoseGarden/icons/Search.svg"
-dest_files=["res://.godot/imported/Search.svg-1b25512e01a071fb5401c3a1adcb534b.ctex"]
+source_file="res://addons/RoseGarden/icons/Copy.svg"
+dest_files=["res://.godot/imported/Copy.svg-7df5d92e9d5161f8554820c5962e0791.ctex"]
 
 [params]
 

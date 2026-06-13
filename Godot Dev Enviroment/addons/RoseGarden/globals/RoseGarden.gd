@@ -2,13 +2,17 @@
 extends Node
 
 signal update_components
+signal flags_changed(flag_name:String,new_value:bool)
+signal rcm_closed
 func _ready() -> void:
 	custom_themes_changed.connect(Themes._update_themes)
 	await get_tree().create_timer(0.1).timeout
 	custom_themes_changed.emit()
-	enable_custom_themes("res://CustomThemes")
 
-#Accessibility
+#######################
+#### Accessibility ####
+#######################
+
 class Accessibility:
 	static var disableAnimations:bool = false
 	static var increaseContrast:bool = false
@@ -26,7 +30,10 @@ class Accessibility:
 	static func get_increase_contrast():
 		return increaseContrast
 
-#Colors
+################
+#### Colors ####
+################
+
 class Colors:
 
 	const GRAY_HIGHLIGHT = Color("414141")
@@ -99,19 +106,28 @@ class Animations:
 	static var togglePress:bool = true
 	static var sgSelection:bool = true #sg: SegmentedControl
 	static var svChange:bool = true #sv: SectionView
-	static var rcmSelection:bool = true #rcm: RightClickMenu
+	static var rcmSelection:bool = false #rcm: RightClickMenu
 	static var rcmAppearance:bool = true
-	static var ddmSelection:bool = true #ddm: DropDownMenu
+	static var ddmSelection:bool = false #ddm: DropDownMenu
+	static var ddmAppearance:bool = true
 	static var toastAppearance:bool = true
 	static var tooltipAppearance:bool = true
 
-#Themes
+################
+#### Themes ####
+################
+
 class Themes:
 	static var Main = load("res://addons/RoseGarden/themes/Main.tres")
 	static var Secondary = load("res://addons/RoseGarden/themes/Secondary.tres")
 	static var Large = load("res://addons/RoseGarden/themes/Large.tres")
 	static var Info = load("res://addons/RoseGarden/themes/Info.tres")
 	static var FinePrint = load("res://addons/RoseGarden/themes/FinePrint.tres")
+	static var MainRound = load("res://addons/RoseGarden/themes/MainRound.tres")
+	static var SecondaryRound = load("res://addons/RoseGarden/themes/SecondaryRound.tres")
+	static var LargeRound = load("res://addons/RoseGarden/themes/LargeRound.tres")
+	static var InfoRound = load("res://addons/RoseGarden/themes/InfoRound.tres")
+	static var FinePrintRound = load("res://addons/RoseGarden/themes/FinePrintRound.tres")
 
 	static func _update_themes():
 		Main = load(RoseGarden._theme_path+"Main.tres")
@@ -120,7 +136,23 @@ class Themes:
 		Info = load(RoseGarden._theme_path+"Info.tres")
 		FinePrint = load(RoseGarden._theme_path+"FinePrint.tres")
 
-#Custom Textures
+class Flags:
+	static var accessible_toggles:bool = false
+
+	static func change_flag(flag_name:String,value:bool):
+		match flag_name:
+			"accessible_toggles":
+				accessible_toggles = value
+				RoseGarden.update_components.emit()
+			_:
+				return ERR_INVALID_PARAMETER
+		RoseGarden.flags_changed.emit(flag_name,value)
+		return OK
+
+#########################
+#### Custom Textures ####
+#########################
+
 var useCustomTextures:bool = false
 var customTexturePath:String = ""
 var _file_path:String = "res://addons/RoseGarden/components/"
@@ -149,7 +181,10 @@ func enable_custom_textures(file_path:String):
 	customTexturePath = file_path+"/"
 	custom_textures_changed.emit()
 
-#Fonts Themes
+######################
+#### Fonts Themes ####
+######################
+
 var useCustomThemes:bool = false
 var customThemePath:String = ""
 signal custom_themes_changed
@@ -166,9 +201,9 @@ func set_custom_theme_path(file_path:String):
 	custom_themes_changed.emit()
 
 func enable_custom_themes(theme_path:String):
-	useCustomThemes = true
 	if !FileAccess.file_exists(theme_path):
 		push_error("RoseGarden: The provided custom theme path does not exist.")
+	useCustomThemes = true
 	customThemePath = theme_path
 	_theme_path = theme_path+"/"
 	custom_themes_changed.emit()
@@ -182,8 +217,10 @@ func disable_custom_themes():
 func _get_theme_path():
 	return _theme_path
 
+####################################
+#### Right Click Menu Functions ####
+####################################
 
-#Right Click Menu Functions
 var menu_layer:CanvasLayer
 var submenu:RGRighClickMenu
 
@@ -250,20 +287,29 @@ func _delete_submenu():
 	submenu = null
 
 func _delete_all_menus():
+	await get_tree().create_timer(0.05).timeout
 	var menus = menu_layer.get_children()
 	for child in menus:
 		create_tween().tween_property(child,"scale",Vector2(0,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		if child.is_submenu and child.pivot_offset.x == 0:
+			create_tween().tween_property(child,"position:x",child.position.x-child.size.x,0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		elif child.is_submenu and child.pivot_offset.x == child.size.x:
+			create_tween().tween_property(child,"position:x",child.position.x+child.size.x,0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await get_tree().create_timer(0.1).timeout
 	for child in menus:
 		if child != null:
 			child.queue_free()
+	rcm_closed.emit()
 
 func _delete_submenu_instantly():
 	for child in menu_layer.get_children():
 		if child.is_submenu:
 			child.queue_free()
 
-#Tooltip functions
+###########################
+#### Tooltip functions ####
+###########################
+
 var tooltip_layer:CanvasLayer
 
 func set_tooltip_layer(layer:CanvasLayer):
@@ -274,7 +320,7 @@ func create_tooltip(tooltip:RGTooltip,position:Vector2):
 		return ERR_DOES_NOT_EXIST
 	if tooltip_layer.get_class() != "CanvasLayer":
 		return ERR_DOES_NOT_EXIST
-	tooltip_layer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RGtooltip.tscn").instantiate())
+	tooltip_layer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RG_tooltip.tscn").instantiate())
 	var tooltip_object = tooltip_layer.get_child(get_child_count()-1)
 	tooltip_object.set_text(tooltip.text)
 	tooltip_object.set_show_keybind(tooltip.show_keybind)
@@ -288,18 +334,23 @@ func create_tooltip(tooltip:RGTooltip,position:Vector2):
 	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y-30:
 		target_position.y = position.y - tooltip_object.size.y - 46
 	tooltip_object.position = target_position
-	create_tween().tween_property(tooltip_object,"modulate",Color(1,1,1,1),0.065*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance))
+	tooltip_object.visible = true
+	create_tween().tween_property(tooltip_object,"modulate",Color(1,1,1,1),0.09*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance))
 	return OK
 
 func clear_tooltips():
 	for child in tooltip_layer.get_children():
 		var tween = create_tween()
-		tween.tween_property(child,"modulate",Color(1,1,1,0),0.065*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance))
+		tween.tween_property(child,"modulate",Color(1,1,1,0),0.09*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance))
 		await tween.finished
-		child.queue_free()
+		if child != null:
+			child.queue_free()
 	return OK
 
-#Toast functions
+#########################
+#### Toast functions ####
+#########################
+
 var toast_layer:CanvasLayer
 var _toast:RGtoast = null
 func set_toast_layer(layer:CanvasLayer):
@@ -314,7 +365,7 @@ func create_toast(text:String,color:String,clear_time:float=4.0):
 		return ERR_INVALID_PARAMETER
 	if toast_layer.get_child_count() > 0:
 		return ERR_ALREADY_EXISTS
-	toast_layer.add_child(preload("res://addons/RoseGarden/components/Toast/RGtoast.tscn").instantiate())
+	toast_layer.add_child(preload("res://addons/RoseGarden/components/Toast/RG_toast.tscn").instantiate())
 	_toast = toast_layer.get_child(get_child_count()-1)
 	_toast.set_text(text)
 	_toast.set_color(color)

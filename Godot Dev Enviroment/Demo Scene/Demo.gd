@@ -56,7 +56,7 @@ func _ready() -> void:
 	accent_dropdown.add_item("Pink",6)
 	accent_dropdown.add_item("Purple",7)
 
-	
+
 	view_control.add_item("button","Button")
 	view_control.add_item("toggle","Toggle")
 	view_control.add_item("text_field"," Text Field")
@@ -67,34 +67,35 @@ func _ready() -> void:
 	view_control.add_item("rcm","Right Click Menu")
 	view_control.add_item("progress_bar","Progress Bar")
 	view_control.add_item("donut_graph","Donut Graph")
-	
+
 	#Segment Control
 	sc1.add_item("option_1","Option 1")
 	sc1.add_item("option_2","Option 2")
 	sc1.add_item("option_3","Option 3")
-	
+
 	#Segment Control Icon
 	sc2.add_item("home",Icons.HOME)
 	sc2.add_item("book",Icons.CHECKBOOK)
 	sc2.add_item("checklist",Icons.CHECKLIST)
-	
+
 	#Drop Down
 	drop_down.add_item("Option 1",0)
 	drop_down.add_item("Option 2",1)
 	drop_down.add_item("Option 3",2)
-	
+
 	#Right Click Menu Creation
 	RoseGarden.set_menu_layer($CanvasLayer)
 	RoseGarden.set_tooltip_layer($CanvasLayer2)
 	RoseGarden.set_toast_layer($CanvasLayer3)
+	RoseGarden.enable_custom_themes("res://CustomThemes")
 	menu.add_action("Home",Icons.HOME,empty)
 	menu.add_menu("Menu",Icons.CHECKLIST,submenu)
-	menu.add_seperator() 
+	menu.add_seperator()
 	menu.add_action("Delete",Icons.TRASH,empty,[],true)
 	submenu.add_action("Test",Icons.HOME,empty)
 	submenu.add_action("Test2",Icons.HOME,empty)
 	submenu.add_action("Test3",Icons.HOME,empty)
-	
+
 
 func _on_prev_view_pressed() -> void:
 	view_control.select_prev()
@@ -110,7 +111,7 @@ func _on_view_control_item_selected(item_name: String) -> void:
 	else:
 		accent_dropdown.remove_item(8)
 	create_tween().tween_property(view_scroll,"scroll_horizontal",view*buttons_container.size.x,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	
+
 
 func _find_index(array:Array,item):
 	var index = 0
@@ -136,7 +137,7 @@ func _on_accent_new_selection(selection: String) -> void:
 	button5.set_color(selection)
 	button6.set_color(selection)
 	button7.set_color(selection)
-	button8.set_color(selection) 
+	button8.set_color(selection)
 	button9.set_color(selection)
 	toggle1.set_color(selection)
 	toggle2.set_color(selection)

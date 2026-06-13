@@ -5,8 +5,14 @@ class_name RGRighClickMenu
 @onready var selection: NinePatchRect = $NinePatchRect/MarginContainer/Control/NinePatchRect
 var is_submenu:bool = false
 var _mouse_inside := false
+var grace_period := true
+var mouse_was_inside:bool = false
 func _ready() -> void:
+	RoseGarden.custom_textures_changed.connect(_update)
 	scale = Vector2(0,0)
+	await get_tree().create_timer(0.1).timeout
+	grace_period = false
+	grab_focus()
 
 func _custom_ready() -> void:
 	if !is_submenu:
@@ -20,6 +26,9 @@ func _custom_ready() -> void:
 		selection.modulate = Color("41414100")
 
 func _on_focus_exited() -> void:
+	await get_tree().process_frame
+	if grace_period or get_viewport().gui_get_focus_owner().has_method("_add_destructive"): #"_add_destructive" is a method specific to the RGRighClickMenuItem class, which is used for menu items. This check ensures that the focus owner is a menu item before proceeding with the deletion of menus.
+		return
 	RoseGarden._delete_all_menus()
 
 func add_item(data:Array):
@@ -84,6 +93,8 @@ func _add_seperator():
 	return OK
 
 func _update():
+	texture.texture = load(RoseGarden._get_file_path()+"RightClickMenu/Container.svg")
+	selection.texture = load(RoseGarden._get_file_path()+"RightClickMenu/Selection.svg")
 	size.y  = item_container.get_minimum_size().y +16
 	custom_minimum_size.y = size.y
 	texture.size.y = size.y
@@ -111,21 +122,20 @@ func update_selection(is_menu:bool):
 func _on_mouse_entered() -> void:
 	create_tween().tween_property(selection,"modulate",Color(selection.modulate.r,selection.modulate.g,selection.modulate.b,1),0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.Animations.rcmSelection))
 
-
 func _on_mouse_exited() -> void:
 	create_tween().tween_property(selection,"modulate",Color(selection.modulate.r,selection.modulate.g,selection.modulate.b,0),0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.Animations.rcmSelection))
 
 func _process(_delta: float) -> void:
-	var currently_inside = is_mouse_inside()
-
-	if currently_inside and not _mouse_inside:
-		_mouse_inside = true
-		_on_mouse_entered()
-	elif not currently_inside and _mouse_inside:
-		_mouse_inside = false
+	if mouse_was_inside and !is_mouse_inside():
 		_on_mouse_exited()
+	elif !mouse_was_inside and is_mouse_inside():
+		_on_mouse_entered()
+	elif !mouse_was_inside and !is_mouse_inside():
+		_on_mouse_exited()
+	mouse_was_inside = is_mouse_inside()
 
 func is_mouse_inside() -> bool:
-	var mouse_pos = get_viewport().get_mouse_position()
-	var rect = Rect2(global_position, size)
-	return rect.has_point(mouse_pos)
+	var mouse_pos = get_global_mouse_position()
+	if mouse_pos.x<position.x or mouse_pos.y<position.y or mouse_pos.x>position.x+size.x or mouse_pos.y>position.y+size.y:
+		return false
+	return true

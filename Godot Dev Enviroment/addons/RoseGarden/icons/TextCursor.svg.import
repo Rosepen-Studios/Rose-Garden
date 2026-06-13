@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7lsai6efqx62"
-path="res://.godot/imported/Up.svg-2fff4190a7f31975772f0d48393969a3.ctex"
+uid="uid://1wlvwcwfp2fc"
+path="res://.godot/imported/TextCursor.svg-01204c08450a78306a605b41963daafa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/RoseGarden/icons/Up.svg"
-dest_files=["res://.godot/imported/Up.svg-2fff4190a7f31975772f0d48393969a3.ctex"]
+source_file="res://addons/RoseGarden/icons/TextCursor.svg"
+dest_files=["res://.godot/imported/TextCursor.svg-01204c08450a78306a605b41963daafa.ctex"]
 
 [params]
 

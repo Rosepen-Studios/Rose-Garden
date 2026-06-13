@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxrkh0b5fa435"
-path="res://.godot/imported/Down.svg-4b6c11404e76fd54fe40cb47a2205e81.ctex"
+uid="uid://dva7nemhqf4w5"
+path="res://.godot/imported/Clipboard.svg-fd04d03f5ca842d8778a4a1295d71fae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/RoseGarden/icons/Down.svg"
-dest_files=["res://.godot/imported/Down.svg-4b6c11404e76fd54fe40cb47a2205e81.ctex"]
+source_file="res://addons/RoseGarden/icons/Clipboard.svg"
+dest_files=["res://.godot/imported/Clipboard.svg-fd04d03f5ca842d8778a4a1295d71fae.ctex"]
 
 [params]
 

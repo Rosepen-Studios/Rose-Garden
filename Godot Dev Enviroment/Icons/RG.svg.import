@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du6cbrypcj8g3"
-path="res://.godot/imported/Keybind Conatiner.svg-00ac532f798cb081fc364b29304d1611.ctex"
+uid="uid://sgrsfngnkm6q"
+path="res://.godot/imported/RG.svg-2e7fddd90feb99fa8911f47e1508b2d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/RoseGarden/components/TextFieldIcon/Keybind Conatiner.svg"
-dest_files=["res://.godot/imported/Keybind Conatiner.svg-00ac532f798cb081fc364b29304d1611.ctex"]
+source_file="res://Icons/RG.svg"
+dest_files=["res://.godot/imported/RG.svg-2e7fddd90feb99fa8911f47e1508b2d8.ctex"]
 
 [params]
 

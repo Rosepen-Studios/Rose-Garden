@@ -61,7 +61,8 @@ func _ready() -> void:
 	submenu.add_action("Test",Icons.HOME,empty)
 	submenu.add_action("Test2",Icons.HOME,empty)
 	submenu.add_action("Test3",Icons.HOME,empty)
-
+	
+	RoseGarden.enable_custom_themes("res://CustomThemes")
 func empty():#Just an empty function for the rcm to call
 	pass
 

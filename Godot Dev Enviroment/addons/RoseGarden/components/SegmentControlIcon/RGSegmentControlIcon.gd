@@ -71,12 +71,14 @@ func select_next():
 	if selected == items[items.size()-1]:
 		return ERR_DOES_NOT_EXIST
 	select(items[_find_index(items,selected)+1])
+	_shade_options()
 	return OK
 
 func select_prev():
 	if selected == items[0]:
 		return ERR_DOES_NOT_EXIST
 	select(items[_find_index(items,selected)-1])
+	_shade_options()
 	return OK
 
 ##############
@@ -97,8 +99,12 @@ func _ready() -> void:
 		if !items == []:
 			select(items[0])
 		_update()
+	RoseGarden.custom_textures_changed.connect(_update)
+	_update()
 
 func _update():
+	texture.texture = load(RoseGarden._get_file_path()+"SegmentControl/Container.svg")
+	selector.texture = load(RoseGarden._get_file_path()+"SegmentControl/Selection.svg")
 	var container_size = icon_container.get_parent().size.x
 	texture.size.x = container_size
 	custom_minimum_size.x = texture.size.x

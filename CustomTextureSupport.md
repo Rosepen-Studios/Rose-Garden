@@ -1,12 +1,14 @@
 - [x] Button
 - [x] Drop Down
-- [ ] Progress Bar
-- [ ] Right Click Menu
-- [ ] Section View
-- [ ] Segment Control
-- [ ] Segment Control Icon
-- [ ] Tag
+- [x] Progress Bar
+- [x] Right Click Menu
+- [x] Section View
+- [x] Segment Control
+- [x] Segment Control Icon
+- [x] Tag
 - [x] Text
-- [ ] Text Field
-- [ ] Toggle
+- [x] Text Field
+- [x] Text Field Icon
+- [x] Toggle
 - [x] Tooltip
+- [x] Toast

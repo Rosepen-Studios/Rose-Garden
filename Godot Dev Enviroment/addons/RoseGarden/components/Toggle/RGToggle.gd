@@ -4,9 +4,20 @@ class_name RGToggle
 @onready var base: TextureRect = $TextureRect
 @onready var ball: TextureRect = $Container/TextureRect
 
-@export_enum("White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Red"
-@export var accessible:bool = false
-@export var is_toggled := false
+@export_enum("White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Red":
+	set(new_value):
+		if RoseGarden.Colors.verify_color(new_value,false) != OK:
+			return ERR_INVALID_PARAMETER
+		color = new_value
+		_update()
+@export var accessible:bool = false:
+	set(new_value):
+		accessible = new_value
+		_update()
+@export var is_toggled := false:
+	set(new_value):
+		is_toggled = new_value
+		_update()
 
 signal button_down
 signal button_up
@@ -18,6 +29,7 @@ signal dehovered
 var _texture_path
 var _hovered:bool = false
 var dont_animate:bool = false
+
 func set_color(new_color):
 	if RoseGarden.Colors.verify_color(new_color,false) != OK:
 		return ERR_INVALID_PARAMETER
@@ -60,19 +72,17 @@ func _on_pressed() -> void:
 
 
 func _update():
+	if base == null:
+		return
 	if accessible:
-		_texture_path = "res://addons/RoseGarden/components/Toggle/BaseAccesible/"
+		_texture_path = RoseGarden._get_file_path()+"Toggle/BaseAccesible/"
 	else:
-		_texture_path = "res://addons/RoseGarden/components/Toggle/Base/"
+		_texture_path = RoseGarden._get_file_path()+"Toggle/Base/"
 
 	if is_toggled:
 		_show_on()
 	else:
 		_show_off()
-
-func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
-		_update()
 
 func _show_off():
 	base.texture = load(_texture_path+"BaseGray.svg")
@@ -112,4 +122,11 @@ func _on_mouse_exited() -> void:
 	dehovered.emit()
 
 func _ready() -> void:
+	RoseGarden.custom_textures_changed.connect(_update)
+	RoseGarden.flags_changed.connect(_update_flags)
 	_update()
+
+func _update_flags(flag_name:String,new_value:bool):
+	if flag_name == "accessible_toggles":
+		accessible = new_value
+		_update()

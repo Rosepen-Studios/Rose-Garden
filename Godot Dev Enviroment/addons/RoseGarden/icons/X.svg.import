@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj47hidjlap3s"
-path="res://.godot/imported/Checklist.svg-8bd13bda58a076840bc32ab88b79b4d8.ctex"
+uid="uid://ci2ndnp0tpdht"
+path="res://.godot/imported/X.svg-a517edae2d4c2bc0fe9b48286c37a322.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/RoseGarden/icons/Checklist.svg"
-dest_files=["res://.godot/imported/Checklist.svg-8bd13bda58a076840bc32ab88b79b4d8.ctex"]
+source_file="res://addons/RoseGarden/icons/X.svg"
+dest_files=["res://.godot/imported/X.svg-a517edae2d4c2bc0fe9b48286c37a322.ctex"]
 
 [params]
 
