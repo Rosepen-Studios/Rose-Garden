@@ -15,6 +15,10 @@ var item_ids:Array = []
 var last_given_id:int = -1
 var selected:int = 0
 var open:bool = false
+var canvas_layer_index:int = 0:
+	set(new_value):
+		canvas_layer_index = new_value
+		canvas_layer.layer = new_value
 signal new_selection(selection:String)
 signal opened
 signal closed
@@ -57,6 +61,17 @@ func select(item_id:int):
 	_update()
 	return OK
 
+func rename_item(item_id:int,new_name:String):
+	if !_array_has_item(item_ids,item_id):
+		return Error.ERR_DOES_NOT_EXIST
+	items[_find_index(item_ids,item_id)] = new_name
+	for child in menu_item_container.get_children():
+		if child.id == item_id:
+			child.option_name = new_name
+			child._update()
+	_update()
+	return OK
+
 func get_selected():
 	return selected
 
@@ -78,7 +93,10 @@ func _ready() -> void:
 
 func _update():
 	if !Engine.is_editor_hint():
-		size.x = menu_item_container._get_min_size()
+		if size_flags_horizontal != SIZE_EXPAND_FILL:
+			size.x = menu_item_container._get_min_size() + 16
+		else:
+			custom_minimum_size.x = 0
 		if !_array_has_item(item_ids,selected) and item_ids !=[]:
 			selected = item_ids[0]
 
@@ -89,8 +107,8 @@ func _update():
 	container.size = size
 	menu_container.size = size
 	custom_minimum_size = size
-	create_tween().tween_property(menu_container,"size",Vector2(size.x,(menu_item_container.get_child_count()*52)+12),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmAppearance)).set_trans(Tween.TRANS_SINE)
 	menu_container.custom_minimum_size.x = size.x
+	create_tween().tween_property(menu_container,"size",Vector2(size.x,(menu_item_container.get_child_count()*52)+12),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmAppearance)).set_trans(Tween.TRANS_SINE)
 	button.custom_minimum_size = size
 	if !items.size()==0:
 		label.text = items[_find_index(item_ids,selected)]
@@ -114,6 +132,7 @@ func _find_index(array:Array,item):
 
 func _open():
 	open = true
+	grab_focus()
 	menu_container.position = global_position
 	for child in menu_item_container.get_children():
 		child._update()
@@ -152,7 +171,6 @@ func _on_focus_exited() -> void:
 			return
 	if !has_focus():
 		_close()
-
 
 func _on_mouse_entered() -> void:
 	modulate = RoseGarden.Colors.COLOR_HOVERED

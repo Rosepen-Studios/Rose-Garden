@@ -48,7 +48,7 @@ func remove_item(item_name:String):
 
 	items.remove_at(_find_index(items,item_name))
 	items_text.erase(item_name)
-	for child in text_container.get_children().size()-1:
+	for child in text_container.get_children().size():
 		if text_container.get_child(child).get_child(0).item == item_name:
 			text_container.get_child(child).get_child(0).queue_free()
 			text_container.get_child(child).queue_free()
@@ -88,6 +88,12 @@ func select_prev():
 	select(items[_find_index(items,selected)-1])
 	return OK
 
+func get_selected():
+	return selected
+
+func get_selected_text():
+	return items_text[selected]
+
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
 ##############
@@ -98,7 +104,7 @@ func _process(_delta: float) -> void:
 		_erase_items()
 		_load_items()
 		select(items[0])
-	_update()
+
 
 func _ready() -> void:
 	if !Engine.is_editor_hint():
@@ -107,6 +113,12 @@ func _ready() -> void:
 			select(items[0])
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	RoseGarden.custom_textures_changed.connect(_update)
+	while true:
+		_update()
+		if RoseGarden.PerformanceMode.is_enabled():
+			await get_tree().create_timer(0.2).timeout
+		else:
+			await get_tree().process_frame
 
 func _update():
 	texture.texture = load(RoseGarden._get_file_path()+"SegmentControl/Container.svg")

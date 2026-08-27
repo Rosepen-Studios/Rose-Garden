@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ixic4nuk36iu" path="res://addons/RoseGarden/components/ProgressBar/Bottom/Bottom Red.svg" id="2_yi08q"]
 [ext_resource type="Texture2D" uid="uid://u2rbks45ftpd" path="res://addons/RoseGarden/components/ProgressBar/Top/Top Red.svg" id="3_8fg2k"]
 [ext_resource type="Texture2D" uid="uid://cbinska1er8ma" path="res://addons/RoseGarden/components/ProgressBar/Progress/Progress Red.svg" id="4_q8dc0"]
-[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://addons/RoseGarden/themes/Secondary.tres" id="5_7ql1a"]
+[ext_resource type="Theme" uid="uid://dcjb0tugy43pc" path="res://addons/RoseGarden/themes/Secondary.tres" id="5_7ql1a"]
 
 [node name="RGProgressBar" type="Control" unique_id=1750477034]
 custom_minimum_size = Vector2(60, 60)
@@ -12,6 +12,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 60.0
+focus_mode = 1
 script = ExtResource("1_gattr")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1499746209]
@@ -21,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+step = 0.1
 nine_patch_stretch = true
 stretch_margin_left = 30
 stretch_margin_top = 30

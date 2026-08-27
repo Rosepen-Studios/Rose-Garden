@@ -9,6 +9,22 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	custom_themes_changed.emit()
 
+##########################
+#### Performance Mode ####
+##########################
+
+class PerformanceMode:
+	static var enabled:bool = false
+
+	static func enable():
+		enabled = true
+
+	static func disable():
+		enabled = false
+
+	static func is_enabled():
+		return enabled
+
 #######################
 #### Accessibility ####
 #######################
@@ -135,6 +151,10 @@ class Themes:
 		Large = load(RoseGarden._theme_path+"Large.tres")
 		Info = load(RoseGarden._theme_path+"Info.tres")
 		FinePrint = load(RoseGarden._theme_path+"FinePrint.tres")
+
+###############
+#### Flags ####
+###############
 
 class Flags:
 	static var accessible_toggles:bool = false
@@ -325,23 +345,25 @@ func create_tooltip(tooltip:RGTooltip,position:Vector2):
 	tooltip_object.set_text(tooltip.text)
 	tooltip_object.set_show_keybind(tooltip.show_keybind)
 	tooltip_object.set_keybind(tooltip.keybind)
-	tooltip_object._ready()
-	tooltip_object.modulate = Color(1,1,1,0)
-	await get_tree().process_frame
+	await tooltip_object._update() # Please don't ask, please don't remove one
+	await tooltip_object._update() #
 	var target_position = position + Vector2(16,16)
-	if target_position.x + tooltip_object.size.x > DisplayServer.window_get_size().x-30:
-		target_position.x = position.x - tooltip_object.size.x - 46
-	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y-30:
-		target_position.y = position.y - tooltip_object.size.y - 46
+	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y-16:
+		target_position.y = position.y - tooltip_object.size.y
+	if target_position.x +tooltip_object.size.x > DisplayServer.window_get_size().x-16:
+		target_position.x = position.x - tooltip_object.size.x
+
 	tooltip_object.position = target_position
-	tooltip_object.visible = true
+	tooltip_object.show()
 	create_tween().tween_property(tooltip_object,"modulate",Color(1,1,1,1),0.09*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance))
 	return OK
 
-func clear_tooltips():
+func clear_tooltips(no_animation:bool = false):
+	if tooltip_layer == null:
+		return
 	for child in tooltip_layer.get_children():
 		var tween = create_tween()
-		tween.tween_property(child,"modulate",Color(1,1,1,0),0.09*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance))
+		tween.tween_property(child,"modulate",Color(1,1,1,0),0.09*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance)*int(!no_animation))
 		await tween.finished
 		if child != null:
 			child.queue_free()

@@ -195,3 +195,15 @@ func _on_disable_animations_toggled(toggled_on: bool) -> void:
 
 func _on__control_39673_pressed() -> void:
 	RoseGarden.create_toast("This is a toast","Blue")
+
+
+func _on__control_39673_hovered() -> void:
+	await get_tree().create_timer(1).timeout
+	if !button1.is_hovered():
+		return
+	var tooltip = RGTooltip.new()
+	tooltip.set_text("test")
+	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+
+func _on__control_39673_de_hovered() -> void:
+	RoseGarden.clear_tooltips()

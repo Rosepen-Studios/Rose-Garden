@@ -855,6 +855,8 @@ layer = 2
 [connection signal="new_selection" from="MarginContainer/VBoxContainer/Controls/RGDrop Down" to="." method="_on_accent_new_selection"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Controls/VBoxContainer/DisableAnimations" to="." method="_on_disable_animations_toggled"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Controls/VBoxContainer2/IncreaseContrast" to="." method="_on_increase_contrast_toggled"]
+[connection signal="de_hovered" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer2/_Control_39673" to="." method="_on__control_39673_de_hovered"]
+[connection signal="hovered" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer2/_Control_39673" to="." method="_on__control_39673_hovered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer2/_Control_39673" to="." method="_on__control_39673_pressed"]
 [connection signal="de_hovered" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer3/_Control_39673" to="." method="_on__control_39673_de_hovered"]
 [connection signal="hovered" from="MarginContainer/VBoxContainer/ScrollContainer/HBoxContainer/Buttons/Buttons/HBoxContainer3/_Control_39673" to="." method="_on__control_39673_hovered"]
